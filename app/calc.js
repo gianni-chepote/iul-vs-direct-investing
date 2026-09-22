@@ -239,9 +239,8 @@ export function prepareWindow(prices, ticker, startIso, endIso) {
     indexLevels.push(gspcByDate.get(r.date));
   }
 
-  const etfDaily = prices[key].daily
-    .filter((r) => r.date >= firstDate && r.date <= lastDate)
-    .map((r) => r.adj_close);
+  const dailyRows = prices[key].daily
+    .filter((r) => r.date >= firstDate && r.date <= lastDate);
 
   return {
     ticker,
@@ -251,7 +250,8 @@ export function prepareWindow(prices, ticker, startIso, endIso) {
     periods: etfMonthly.length,
     etfLevels,
     indexLevels, // length periods + 1 (index 0 is the anchor)
-    etfDaily,
+    etfDaily: dailyRows.map((r) => r.adj_close),
+    etfDailyDates: dailyRows.map((r) => r.date),
   };
 }
 
