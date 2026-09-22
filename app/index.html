@@ -151,6 +151,8 @@
   .caveat { display: flex; gap: 10px; font-size: 13px; color: var(--muted); align-items: flex-start; }
   .caveat::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--iula); margin-top: 7px; }
   .caveat b { color: var(--ink); font-weight: 600; }
+  .sec-note.conclusion { color: var(--ink); font-size: 14.5px; line-height: 1.55; max-width: 72ch; }
+  .sec-note.conclusion b { font-weight: 600; }
 
   @media (max-width: 860px) {
     .tiles { grid-template-columns: repeat(2, 1fr); }
@@ -179,13 +181,13 @@
       <h3>Un seguro con una cuenta de ahorro ligada al mercado</h3>
       <p class="lead">El IUL primero cobra sus comisiones, frena tus ganancias cuando la bolsa sube, se queda con los dividendos y te penaliza si quieres recuperar tu dinero antes de tiempo.</p>
       <p>El seguro de vida universal indexado (IUL) es un seguro de vida permanente con una cuenta de valor en efectivo. Cada prima paga primero el coste del seguro y los cargos de la póliza; lo que queda se acredita con un interés ligado a un índice bursátil como el S&amp;P 500.</p>
-      <p>El crédito tiene tope y piso. Un tope —a menudo cercano al 8%— limita las ganancias en los años buenos, un piso del 0% evita que una caída del índice recorte el crédito, y los dividendos quedan excluidos. Por encima del valor de la cuenta, la póliza paga un beneficio por fallecimiento mientras siga financiada.</p>
+      <p>El crédito tiene tope y piso. Un tope —a menudo entre el 8% y el 10%— limita las ganancias en los años buenos, un piso del 0% evita que una caída del índice recorte el crédito, y los dividendos quedan excluidos. Por encima del valor de la cuenta, la póliza paga un beneficio por fallecimiento mientras siga financiada.</p>
       <p>Es un producto muy poco líquido, pensado para un plazo largo y fijo —de 10 a 20 años, o de por vida—. Si quieres rescatar o retirar tu cuenta antes de terminar todo el plazo del contrato, te penalizan con cargos altos sobre el valor de tu cuenta.</p>
     </div>
     <div class="def etf">
       <span class="tag">Inversión directa en un índice</span>
       <h3>Eres dueño del fondo, y con él de todo el mercado</h3>
-      <p>Invertir directamente significa comprar un ETF de bajo coste como SPY o VOO que replica el S&amp;P 500. Eres dueño del fondo, recibes sus dividendos (aquí reinvertidos) y su valor se mueve con el mercado.</p>
+      <p>Invertir directamente significa comprar un ETF como SPY o VOO que replica el S&amp;P 500. Eres dueño del fondo, recibes sus dividendos y su valor se mueve con el mercado.</p>
       <p>No hay cargos de seguro ni tope a las ganancias, pero tampoco hay piso: una caída del mercado golpea tu saldo por completo.</p>
       <p>Los ETF son líquidos: puedes salir en cualquier momento al valor de mercado. El S&amp;P 500 es un índice de las 500 mayores empresas cotizadas de EE.&nbsp;UU. y una referencia amplia del mercado estadounidense.</p>
     </div>
@@ -235,7 +237,7 @@
 
   <section>
     <h2 class="sec-title">Crecimiento en el tiempo</h2>
-    <p class="sec-note">El backtest del ETF y ambas líneas del IUL en un mismo eje de dólares, sobre las aportaciones acumuladas. Pasa el cursor para ver el valor de cada uno en cualquier mes. El IUL-B aplica la regla real de la póliza: en los años en que el índice cae, acredita 0% (el piso) —no pierde por el índice, pero los cargos siguen restando—, y en los años buenos el tope limita la ganancia.</p>
+    <p class="sec-note">El backtest del ETF y ambas líneas del IUL en dólares, sobre las aportaciones acumuladas. Pasa el cursor para ver el valor de cada uno en cualquier mes. El IUL-B aplica la regla real de la póliza: en los años en que el índice cae, acredita 0% (el piso) —no pierde por el índice, pero los cargos siguen restando—, y en los años buenos el tope limita la ganancia.</p>
     <div class="chart-card">
       <div class="chart-head"><span class="k">Valor de la cuenta, fin de mes</span><span class="k" id="growth-sum"></span></div>
       <div id="chart-growth"></div>
@@ -259,7 +261,7 @@
 
   <section>
     <h2 class="sec-title">Cómo se sintió la montaña rusa del ETF</h2>
-    <p class="sec-note">La caída desde máximos mide cuánto estuvo el ETF por debajo de su máximo previo, usando la serie de rentabilidad sin aportaciones para que los depósitos no oculten las pérdidas. Una línea suave del IUL no prueba que la póliza carezca de riesgo.</p>
+    <p class="sec-note">La caída desde máximos mide cuánto estuvo el ETF por debajo de su máximo previo. Una línea suave del IUL no prueba que la póliza carezca de riesgo.</p>
     <div class="chart-card">
       <div class="chart-head"><span class="k">Caída desde el máximo previo</span><span class="k" id="dd-sum"></span></div>
       <div id="chart-dd"></div>
@@ -268,7 +270,7 @@
 
   <section>
     <h2 class="sec-title">En qué se diferencian de verdad</h2>
-    <p class="sec-note">Ninguno es simplemente mejor — la elección depende de si necesitas un seguro de vida duradero y de cómo valoras topes, comisiones, liquidez e impuestos.</p>
+    <p class="sec-note conclusion">No se trata de decir que uno sea «bueno» y el otro «malo», sino de entender la regla básica de las inversiones: nunca pongas todos tus huevos en la misma canasta. La diversificación es tu mejor escudo contra el riesgo de mercado. Ahora bien, si vas a asumir el riesgo de la bolsa a través del S&amp;P 500, ¿por qué hacerlo a través de un IUL que le pone un freno a tus ganancias? Entre ambos productos, <b>la vía directa al índice siempre será la decisión más inteligente</b>.</p>
     <div class="cmp-wrap">
       <table class="cmp">
         <thead>
@@ -615,6 +617,7 @@ const cvar = (n) => getComputedStyle(document.documentElement).getPropertyValue(
 const svgNS = "http://www.w3.org/2000/svg";
 
 const DEFAULT_INPUTS = { budget: 300, ticker: "SPY", rate: 8, charge: 49.26, cap: 8, floor: 0, participation: 100, spread: 0 };
+const SURRENDER_PCT = 0.35; // valor de rescate ilustrativo: 35% del valor de la cuenta
 const VB = { w: 820, h: 320, l: 54, r: 96, t: 16, b: 30 };
 
 function monthEnds(ticker) { return PRICES[ticker.toLowerCase()].monthly.map((r) => r.date); }
@@ -800,7 +803,7 @@ function render() {
   $("s-iulb").textContent = `${capped} años en el tope · ${floored} en el piso`;
 
   $("answer").innerHTML =
-    `Si hubieras invertido <b>${usd0(inp.budget)}</b> cada mes en <b>${inp.ticker}</b> desde el <b>${longDate(w.firstDate)}</b> hasta el <b>${longDate(w.lastDate)}</b>, tus <b>${usd0(s.contributed)}</b> valdrían aproximadamente <b>${usd0(s.etf.finalValue)}</b> al ${longDate(valuationDate)}, con dividendos reinvertidos, antes de impuestos personales y costes de operación. La ilustración publicitada del IUL muestra <b>${usd0(s.iulA.finalValue)}</b>; la misma póliza acreditada sobre el índice real de precios del S&P 500 alcanza <b>${usd0(s.iulB.finalValue)}</b>.`;
+    `Si hubieras invertido <b>${usd0(inp.budget)}</b> cada mes en <b>${inp.ticker}</b> desde el <b>${longDate(w.firstDate)}</b> hasta el <b>${longDate(w.lastDate)}</b>, tus <b>${usd0(s.contributed)}</b> valdrían aproximadamente <b>${usd0(s.etf.finalValue)}</b> al ${longDate(valuationDate)}, con dividendos reinvertidos. La ilustración publicitada del IUL muestra <b>${usd0(s.iulA.finalValue)}</b>.`;
 
   $("ticker-hint").textContent = inp.ticker === "SPY" ? "SPY hace de sustituto del índice; VOO se lanzó después." : "Solo historial de VOO — sin relleno anterior a 2010.";
   $("win-hint").textContent = `Comprando al cierre de cada fin de mes. Último cierre verificado: ${longDate(valuationDate)}.`;
@@ -817,12 +820,13 @@ function render() {
   areaChart($("chart-dd"), w.etfDailyDates, s.drawdown.series);
   $("dd-sum").innerHTML = `Peor: <b>${pct(s.drawdown.worst)}</b>`;
 
+  const surrenderValue = s.iulA.finalValue * SURRENDER_PCT;
   compareBars($("chart-exit"), [
     { label: "ETF\n(vender en el mercado)", value: s.etf.finalValue, color: cvar("--etf") },
     { label: "Valor de la cuenta\ndel IUL", value: s.iulA.finalValue, color: cvar("--iula") },
-    { label: "Valor de rescate\ndel IUL", value: s.iulA.finalValue, color: cvar("--iulb") },
+    { label: "Rescate del IUL\n(ilustrativo, 35%)", value: surrenderValue, color: cvar("--warn") },
   ]);
-  $("exit-note").innerHTML = `El valor de rescate mostrado es igual al valor de la cuenta porque no se ha proporcionado un calendario de cargos de rescate — <b>un calendario real lo reduciría, sobre todo en los primeros años</b>. El importe de retiro anticipado del IUL está totalmente especificado en el contrato y puede llegar a superar la mitad del valor de la cuenta. Rescatar también termina la cobertura de ${usd0(cfg.deathBenefit || 214000)}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.`;
+  $("exit-note").innerHTML = `El valor de rescate mostrado es un ejemplo ilustrativo: <b>el 35% del valor de la cuenta</b>, es decir, un cargo de rescate del 65%. El calendario real está totalmente especificado en tu contrato y, sobre todo en los primeros años, puede quedarse con más de la mitad de tu dinero. Rescatar también termina la cobertura de ${usd0(cfg.deathBenefit || 214000)}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.`;
 
   $("disclosure").textContent ="Backtest histórico del ETF e ilustraciones modeladas del IUL (tasa fija publicitada y reconstrucción vinculada al índice). Ninguna garantiza resultados futuros.";
   const prov = PRICES.meta;

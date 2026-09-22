@@ -17,7 +17,7 @@ reconstruyo la página. Los `{marcadores}` son valores que se calculan en vivo.
 - **Etiqueta superior:** Backtest histórico · ilustración hipotética
 - **Título (visible, H1):** ¿Puede un IUL triplicar mi inversión de $72,000 a $214,000?
 - **Subtítulo (visible):** Sí… pero solo si mueres. En ese caso extremo —fallecimiento o enfermedad terminal, según la póliza— cobrarías los $214,000 completos. Si vives para contarlo, la historia es muy distinta.
-- **Frase dinámica (respuesta):** Si hubieras invertido **{presupuesto}** cada mes en **{ETF}** desde el **{fecha inicial}** hasta el **{fecha final}**, tus **{total aportado}** valdrían aproximadamente **{valor ETF}** al {fecha de valoración}, con dividendos reinvertidos, antes de impuestos personales y costes de operación. La ilustración publicitada del IUL muestra **{valor IUL-A}**.
+- **Frase dinámica (respuesta):** Si hubieras invertido **{presupuesto}** cada mes en **{ETF}** desde el **{fecha inicial}** hasta el **{fecha final}**, tus **{total aportado}** valdrían aproximadamente **{valor ETF}** al {fecha de valoración}, con dividendos reinvertidos. La ilustración publicitada del IUL muestra **{valor IUL-A}**.
 
 > **«El IUL te vende la ilusión de rendimiento; el ETF te da el mercado real.»**
 
@@ -27,13 +27,13 @@ reconstruyo la página. Los `{marcadores}` son valores que se calculan en vivo.
 **Título:** Un seguro con una cuenta de ahorro ligada al mercado
 **Entradilla:** El IUL primero cobra sus comisiones, frena tus ganancias cuando la bolsa sube, se queda con los dividendos y te penaliza si quieres recuperar tu dinero antes de tiempo.
 - El seguro de vida universal indexado (IUL) es un seguro de vida permanente con una cuenta de valor en efectivo. Cada prima paga primero el coste del seguro y los cargos de la póliza; lo que queda se acredita con un interés ligado a un índice bursátil como el S&P 500.
-- El crédito tiene tope y piso. Un tope —a menudo cercano al 8%— limita las ganancias en los años buenos, un piso del 0% evita que una caída del índice recorte el crédito, y los dividendos quedan excluidos. Por encima del valor de la cuenta, la póliza paga un beneficio por fallecimiento mientras siga financiada.
+- El crédito tiene tope y piso. Un tope —a menudo cercano al 8—10% limita las ganancias en los años buenos, un piso del 0% evita que una caída del índice recorte el crédito, y los dividendos quedan excluidos. Por encima del valor de la cuenta, la póliza paga un beneficio por fallecimiento mientras siga financiada.
 - Es un producto sumamente *ilíquido*, pensado para un plazo largo y fijo —de 10 a 20 años, o de por vida—. Si quieres rescatar o retirar tu cuenta antes de terminar todo el plazo del contrato, te penalizan con cargos altos sobre el valor de tu cuenta.
 
 ### Inversión directa en un índice
 **Título:** Eres dueño del fondo, y con él de todo el mercado
 
-- Invertir directamente significa comprar un ETF de bajo coste como SPY o VOO que replica el S&P 500. Eres dueño del fondo, recibes sus dividendos (aquí reinvertidos) y su valor se mueve con el mercado.
+- Invertir directamente significa comprar un ETF como SPY o VOO que replica el S&P 500. Eres dueño del fondo, recibes sus dividendos y su valor se mueve con el mercado.
 - No hay cargos de seguro ni tope a las ganancias, pero tampoco hay piso: una caída del mercado golpea tu saldo por completo. 
 - Los ETF son líquidos: puedes salir en cualquier momento al valor de mercado. El S&P 500 es un índice de las 500 mayores empresas cotizadas de EE. UU. y una referencia amplia del mercado estadounidense.
 
@@ -73,27 +73,27 @@ Las siguientes cifras son ilustrativas, por defecto a lo largo de 20 años (240 
 
 ## Gráfico: Crecimiento en el tiempo
 
-- **Nota:** El backtest del ETF y ambas líneas del IUL en un mismo eje de dólares, sobre las aportaciones acumuladas. Pasa el cursor para ver el valor de cada uno en cualquier mes. El IUL-B aplica la regla real de la póliza: en los años en que el índice cae, acredita 0% (el piso) —no pierde por el índice, pero los cargos siguen restando—, y en los años buenos el tope limita la ganancia.
+- **Nota:** El backtest del ETF y ambas líneas del IUL en dólares, sobre las aportaciones acumuladas. Pasa el cursor para ver el valor de cada uno en cualquier mes. El IUL-B aplica la regla real de la póliza: en los años en que el índice cae, acredita 0% (el piso) —no pierde por el índice, pero los cargos siguen restando—, y en los años buenos el tope limita la ganancia.
 - **Encabezado:** Valor de la cuenta, fin de mes — ETF {valor} · publicitado {valor} · vinculado al índice {valor}
 - **Leyenda:** ETF (rentabilidad total) · IUL-A publicitado · IUL-B vinculado al índice · Aportaciones
 
 ## Gráfico: Si mañana necesitas tu dinero, ¿cuánto puedes recuperar realmente?
 
 - **Nota:** Lo que podrías retirar hoy. El ETF se puede vender en el mercado; el valor de la cuenta del IUL se reduce por cualquier cargo de rescate — y el rescate termina la cobertura.
-- **Barras:** ETF (vender en el mercado) · Valor de la cuenta del IUL · Valor de rescate del IUL
-- **Nota inferior:** El valor de rescate mostrado es igual al valor de la cuenta porque no se ha proporcionado un calendario de cargos de rescate — **un calendario real lo reduciría, sobre todo en los primeros años**. El importe de retiro anticipado del IUL está totalmente especificado en el contrato y puede llegar a superar la mitad del valor de la cuenta. Rescatar también termina la cobertura de {beneficio}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.
+- **Barras:** ETF (vender en el mercado) · Valor de la cuenta del IUL · Rescate del IUL (ilustrativo, 35%)
+- **Nota inferior:** El valor de rescate mostrado es un ejemplo ilustrativo: **el 35% del valor de la cuenta**, es decir, un cargo de rescate del 65%. El calendario real está totalmente especificado en tu contrato y, sobre todo en los primeros años, puede quedarse con más de la mitad de tu dinero. Rescatar también termina la cobertura de {beneficio}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.
 
 
 ## Gráfico: Cómo se sintió la montaña rusa del ETF
 
-- **Nota:** La caída desde máximos mide cuánto estuvo el ETF por debajo de su máximo previo, usando la serie de rentabilidad sin aportaciones para que los depósitos no oculten las pérdidas. Una línea suave del IUL no prueba que la póliza carezca de riesgo.
+- **Nota:** La caída desde máximos mide cuánto estuvo el ETF por debajo de su máximo previo. Una línea suave del IUL no prueba que la póliza carezca de riesgo.
 - **Encabezado:** Caída desde el máximo previo — Peor: {%}
 - **Tooltip:** Bajo el máximo
 
 
 ## Sección: En qué se diferencian de verdad
 
-**Nota:** Ninguno es simplemente mejor — la elección depende de si necesitas un seguro de vida duradero y de cómo valoras topes, comisiones, liquidez e impuestos.
+**Nota:** No se trata de decir que uno sea «bueno» y el otro «malo», sino de entender la regla básica de las inversiones: nunca pongas todos tus huevos en la misma canasta. La diversificación es tu mejor escudo contra el riesgo de mercado. Ahora bien, si vas a asumir el riesgo de la bolsa a través del S&P 500, ¿por qué hacerlo a través de un IUL que le pone un freno a tus ganancias? Entre ambos productos, **la vía directa al índice siempre será la decisión más inteligente**.
 
 | | Seguro de vida universal indexado                                                                                                    | Inversión directa en ETF                                                                     |
 |---|--------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
