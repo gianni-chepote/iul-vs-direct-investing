@@ -15,13 +15,32 @@ const calc = fs.readFileSync(path.join(APP, "calc.js"), "utf8")
 const prices = fs.readFileSync(path.join(HERE, "../data/prices.json"), "utf8");
 const template = fs.readFileSync(path.join(APP, "template.html"), "utf8");
 
-const out = template
+const filled = template
   .replace("/*__CALC__*/", () => calc)
   .replace("/*__PRICES__*/", () => prices);
 
-if (out.includes("/*__CALC__*/") || out.includes("/*__PRICES__*/")) {
+if (filled.includes("/*__CALC__*/") || filled.includes("/*__PRICES__*/")) {
   throw new Error("A placeholder was not substituted; check template markers.");
 }
+
+// Split the template into head content (title/meta/links/style) and body
+// content, then wrap in a complete, standalone HTML document so the page works
+// by double-click, on a static host, and inside a Streamlit embed.
+const [head, body] = filled.split("<!--__SPLIT__-->");
+if (body === undefined) throw new Error("Missing <!--__SPLIT__--> marker in template.");
+
+const out = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+${head.trim()}
+</head>
+<body>
+${body.trim()}
+</body>
+</html>
+`;
 
 const dest = path.join(APP, "index.html");
 fs.writeFileSync(dest, out);
