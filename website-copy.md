@@ -15,8 +15,8 @@ reconstruyo la página. Los `{marcadores}` son valores que se calculan en vivo.
 ## Encabezado
 
 - **Etiqueta superior:** Backtest histórico · ilustración hipotética
-- **Título:** Invertir $300 al mes: ¿IUL o inversión directa?
-- **Subtítulo:** Si hubieras contratado el IUL, en el caso extremo de fallecimiento —o de enfermedad terminal, según la póliza— habrías recibido el beneficio completo publicitado de $214,000.
+- **Título (visible, H1):** ¿Puede un IUL triplicar mi inversión de $72,000 a $214,000?
+- **Subtítulo (visible):** Sí… pero solo si mueres. En ese caso extremo —fallecimiento o enfermedad terminal, según la póliza— cobrarías los $214,000 completos. Si vives para contarlo, la historia es muy distinta.
 - **Frase dinámica (respuesta):** Si hubieras invertido **{presupuesto}** cada mes en **{ETF}** desde el **{fecha inicial}** hasta el **{fecha final}**, tus **{total aportado}** valdrían aproximadamente **{valor ETF}** al {fecha de valoración}, con dividendos reinvertidos, antes de impuestos personales y costes de operación. La ilustración publicitada del IUL muestra **{valor IUL-A}**.
 
 > **«El IUL te vende la ilusión de rendimiento; el ETF te da el mercado real.»**
@@ -73,7 +73,7 @@ Las siguientes cifras son ilustrativas, por defecto a lo largo de 20 años (240 
 
 ## Gráfico: Crecimiento en el tiempo
 
-- **Nota:** El backtest del ETF y ambas líneas del IUL en un mismo eje de dólares, sobre las aportaciones acumuladas. Pasa el cursor para ver el valor de cada uno en cualquier mes.
+- **Nota:** El backtest del ETF y ambas líneas del IUL en un mismo eje de dólares, sobre las aportaciones acumuladas. Pasa el cursor para ver el valor de cada uno en cualquier mes. El IUL-B aplica la regla real de la póliza: en los años en que el índice cae, acredita 0% (el piso) —no pierde por el índice, pero los cargos siguen restando—, y en los años buenos el tope limita la ganancia.
 - **Encabezado:** Valor de la cuenta, fin de mes — ETF {valor} · publicitado {valor} · vinculado al índice {valor}
 - **Leyenda:** ETF (rentabilidad total) · IUL-A publicitado · IUL-B vinculado al índice · Aportaciones
 
