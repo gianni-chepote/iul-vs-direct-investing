@@ -1,0 +1,12 @@
+{
+  "ticker": "VOO",
+  "provider": "Yahoo Finance",
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/VOO",
+  "retrieved_utc": "2026-09-22T06:22:57.720941+00:00",
+  "first_observation": "2010-09-09",
+  "last_observation": "2026-09-21",
+  "rows": 4032,
+  "adjustment": "Provider Adjusted Close: split- and dividend-adjusted; expenses embedded.",
+  "status": "Live retrieval",
+  "live_error": null
+}

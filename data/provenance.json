@@ -1,0 +1,30 @@
+{
+  "provider": "Yahoo Finance via yfinance",
+  "retrieved_utc": "2026-09-22T06:24:24.212791+00:00",
+  "last_completed_month_end": "2026-08-31",
+  "series": {
+    "SPY": {
+      "role": "ETF total-return backtest",
+      "column": "Adj Close",
+      "coverage_start": "1993-01-29",
+      "coverage_end": "2026-08-31",
+      "n_daily": 8454,
+      "n_monthly": 404
+    },
+    "VOO": {
+      "role": "ETF total-return alternative",
+      "column": "Adj Close",
+      "coverage_start": "2010-09-09",
+      "coverage_end": "2026-08-31",
+      "n_daily": 4018,
+      "n_monthly": 192
+    },
+    "^GSPC": {
+      "role": "S&P 500 price index for IUL-B annual point-to-point credits",
+      "column": "Close",
+      "coverage_start": "1927-12-30",
+      "coverage_end": "2026-08-31",
+      "n_monthly": 1185
+    }
+  }
+}

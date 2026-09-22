@@ -1,0 +1,479 @@
+<title>$300 a Month</title>
+<meta name="description" content="What $300 a month would have become in an S&P 500 ETF, next to an indexed universal life illustration." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+
+<style>
+  :root {
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --surface-2: #eef1f5;
+    --ink: #141922;
+    --muted: #5c6675;
+    --faint: #8b94a3;
+    --line: #e0e5ec;
+    --line-strong: #ccd3dd;
+    --etf: #0e8f7e;        /* ETF total-return backtest */
+    --iula: #bd7f0a;       /* IUL-A advertised illustration */
+    --iulb: #4a6fa5;       /* IUL-B index-linked reconstruction */
+    --contrib: #98a1b0;    /* cumulative contributions */
+    --warn: #b1432d;       /* losses / surrender */
+    --etf-soft: rgba(14,143,126,0.10);
+    --shadow: 0 1px 2px rgba(20,25,34,0.06), 0 8px 24px rgba(20,25,34,0.05);
+    --radius: 12px;
+    --maxw: 1040px;
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #0e1116;
+      --surface: #161b22;
+      --surface-2: #1d232c;
+      --ink: #e9edf2;
+      --muted: #9aa4b2;
+      --faint: #6b7482;
+      --line: #262d38;
+      --line-strong: #333c48;
+      --etf: #2fb8a3;
+      --iula: #e0a63a;
+      --iulb: #7ea0d6;
+      --contrib: #6b7482;
+      --warn: #e0765c;
+      --etf-soft: rgba(47,184,163,0.12);
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1116;
+    --surface: #161b22;
+    --surface-2: #1d232c;
+    --ink: #e9edf2;
+    --muted: #9aa4b2;
+    --faint: #6b7482;
+    --line: #262d38;
+    --line-strong: #333c48;
+    --etf: #2fb8a3;
+    --iula: #e0a63a;
+    --iulb: #7ea0d6;
+    --contrib: #6b7482;
+    --warn: #e0765c;
+    --etf-soft: rgba(47,184,163,0.12);
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-inline: 20px;
+    padding-block: 40px 72px;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 500; text-wrap: balance; margin: 0; }
+
+  /* ---- Header ---- */
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; margin: 0 0 14px;
+  }
+  .headline {
+    font-size: clamp(26px, 4.4vw, 44px); line-height: 1.12; letter-spacing: -0.01em;
+    max-width: 20ch;
+  }
+  .answer {
+    margin-top: 18px; font-size: clamp(15px, 1.6vw, 17px); color: var(--muted);
+    max-width: 62ch;
+  }
+  .answer b { color: var(--ink); font-weight: 600; }
+
+  /* ---- Result tiles ---- */
+  .tiles {
+    display: grid; gap: 12px; margin-top: 32px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .tile {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 6px;
+    border-top: 3px solid var(--line-strong);
+  }
+  .tile[data-series="etf"] { border-top-color: var(--etf); }
+  .tile[data-series="iula"] { border-top-color: var(--iula); }
+  .tile[data-series="iulb"] { border-top-color: var(--iulb); }
+  .tile .label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .tile .kind { font-size: 11px; color: var(--faint); }
+  .tile .value { font-size: 27px; font-weight: 500; letter-spacing: -0.01em; margin-top: 2px; }
+  .tile .sub { font-size: 12.5px; color: var(--muted); }
+  .tile .value.etf { color: var(--etf); }
+  .tile .value.iula { color: var(--iula); }
+  .tile .value.iulb { color: var(--iulb); }
+
+  /* ---- Section scaffolding ---- */
+  section { margin-top: 40px; }
+  .sec-title { font-size: 21px; margin-bottom: 4px; }
+  .sec-note { color: var(--muted); font-size: 13.5px; margin: 0 0 18px; max-width: 64ch; }
+
+  /* ---- Controls ---- */
+  .panel {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .panel-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px; border-bottom: 1px solid var(--line); gap: 12px; flex-wrap: wrap;
+  }
+  .panel-head h3 { font-size: 16px; }
+  .groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .group { padding: 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .group:nth-child(3n) { border-right: none; }
+  .group h4 {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--faint); font-weight: 600; margin: 0 0 14px;
+  }
+  .field { margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label { display: block; font-size: 12.5px; color: var(--muted); margin-bottom: 5px; }
+  .field .hint { font-size: 11.5px; color: var(--faint); margin-top: 4px; }
+  input, select {
+    width: 100%; font: inherit; font-size: 14px; color: var(--ink);
+    background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 8px;
+    padding: 8px 10px; -webkit-appearance: none; appearance: none;
+  }
+  input.mono { font-family: "IBM Plex Mono", monospace; }
+  input:focus-visible, select:focus-visible, button:focus-visible {
+    outline: 2px solid var(--etf); outline-offset: 2px;
+  }
+  .inline-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .readout {
+    font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums;
+    background: var(--surface-2); border: 1px dashed var(--line-strong); border-radius: 8px;
+    padding: 8px 10px; font-size: 14px; color: var(--ink);
+  }
+  button {
+    font: inherit; font-weight: 500; cursor: pointer; border-radius: 8px;
+    border: 1px solid var(--line-strong); background: var(--surface-2); color: var(--ink);
+    padding: 8px 14px; font-size: 13px;
+  }
+  button:hover { border-color: var(--faint); }
+
+  .errbar {
+    margin-top: 14px; padding: 10px 14px; border-radius: 8px; font-size: 13px;
+    background: color-mix(in srgb, var(--warn) 12%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 40%, var(--line));
+    color: var(--warn);
+  }
+
+  /* ---- Chart placeholder (filled in Phase 5) ---- */
+  .chart-stub {
+    border: 1px dashed var(--line-strong); border-radius: var(--radius);
+    background: var(--surface); padding: 40px 24px; text-align: center; color: var(--muted);
+    display: flex; flex-direction: column; gap: 6px; align-items: center;
+  }
+  .chart-stub .k { font-size: 13px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 14px; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--muted); }
+  .swatch { width: 22px; height: 3px; border-radius: 2px; display: inline-block; }
+
+  .footnote { margin-top: 40px; font-size: 12px; color: var(--faint); max-width: 70ch; }
+  .disclosure {
+    margin-top: 14px; padding: 14px 16px; border-left: 3px solid var(--iula);
+    background: var(--surface); border-radius: 0 8px 8px 0; font-size: 12.5px; color: var(--muted);
+  }
+
+  @media (max-width: 860px) {
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+    .groups { grid-template-columns: 1fr; }
+    .group { border-right: none; }
+  }
+  @media (max-width: 480px) {
+    .tiles { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tile .value { transition: color 120ms ease; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Historical backtest · hypothetical illustration</p>
+    <h1 class="headline" id="headline">Where would your $300 a month have taken you?</h1>
+    <p class="answer" id="answer"></p>
+  </header>
+
+  <div class="tiles" id="tiles">
+    <div class="tile">
+      <span class="label">Total paid in</span>
+      <span class="kind">your money</span>
+      <span class="value mono" id="v-contrib">—</span>
+      <span class="sub" id="s-contrib"></span>
+    </div>
+    <div class="tile" data-series="etf">
+      <span class="label">ETF ending value</span>
+      <span class="kind">Historical ETF backtest</span>
+      <span class="value mono etf" id="v-etf">—</span>
+      <span class="sub" id="s-etf"></span>
+    </div>
+    <div class="tile" data-series="iula">
+      <span class="label">IUL-A illustration</span>
+      <span class="kind">Advertised flat rate · hypothetical</span>
+      <span class="value mono iula" id="v-iula">—</span>
+      <span class="sub" id="s-iula"></span>
+    </div>
+    <div class="tile" data-series="iulb">
+      <span class="label">IUL-B index-linked</span>
+      <span class="kind">Same policy, real index credits</span>
+      <span class="value mono iulb" id="v-iulb">—</span>
+      <span class="sub" id="s-iulb"></span>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="sec-title">Set the scenario</h2>
+    <p class="sec-note">Every figure updates from the cached price history — no assumed returns on the ETF side. The IUL monthly charge is fitted once to the reported $142,672 illustration and then held fixed; changing the budget or window does not refit it.</p>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3>Controls</h3>
+        <button id="reset" type="button">Reset to defaults</button>
+      </div>
+      <div class="groups">
+        <div class="group">
+          <h4>Contributions</h4>
+          <div class="field">
+            <label for="budget">Monthly budget (USD)</label>
+            <input class="mono" id="budget" type="number" min="0" step="10" value="300" />
+          </div>
+          <div class="field">
+            <label for="ticker">ETF history</label>
+            <select id="ticker">
+              <option value="SPY">SPY — historical S&amp;P 500 ETF proxy (from 1993)</option>
+              <option value="VOO">VOO — actual history (from Sept 2010)</option>
+            </select>
+            <p class="hint" id="ticker-hint"></p>
+          </div>
+          <div class="field">
+            <label for="win-start">Window</label>
+            <div class="inline-2">
+              <select id="win-start" aria-label="First contribution month"></select>
+              <select id="win-end" aria-label="Last contribution month"></select>
+            </div>
+            <p class="hint" id="win-hint"></p>
+          </div>
+        </div>
+
+        <div class="group">
+          <h4>IUL-A · advertised</h4>
+          <div class="field">
+            <label for="rate">Credited rate (effective annual)</label>
+            <input class="mono" id="rate" type="number" min="0" max="20" step="0.25" value="8" />
+            <p class="hint">Hypothetical; origin unverified.</p>
+          </div>
+          <div class="field">
+            <label for="charge">Equivalent monthly charge (USD)</label>
+            <input class="mono" id="charge" type="number" min="0" step="0.01" value="49.26" />
+            <p class="hint">Fitted approximation, not verified policy fees.</p>
+          </div>
+          <div class="field">
+            <label>Net cash-value contribution / month</label>
+            <div class="readout" id="net-readout">—</div>
+          </div>
+        </div>
+
+        <div class="group">
+          <h4>IUL-B · index credits</h4>
+          <div class="field">
+            <div class="inline-2">
+              <div>
+                <label for="cap">Cap</label>
+                <input class="mono" id="cap" type="number" min="0" max="50" step="0.5" value="8" />
+              </div>
+              <div>
+                <label for="floor">Floor</label>
+                <input class="mono" id="floor" type="number" min="0" max="20" step="0.5" value="0" />
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="inline-2">
+              <div>
+                <label for="participation">Participation</label>
+                <input class="mono" id="participation" type="number" min="0" max="200" step="5" value="100" />
+              </div>
+              <div>
+                <label for="spread">Spread</label>
+                <input class="mono" id="spread" type="number" min="0" max="20" step="0.25" value="0" />
+              </div>
+            </div>
+            <p class="hint">Annual point-to-point on the S&amp;P 500 price index (no dividends).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="errbar" class="errbar" hidden></div>
+  </section>
+
+  <section>
+    <h2 class="sec-title">Growth over time</h2>
+    <p class="sec-note">ETF backtest, both IUL lines and cumulative contributions on shared axes.</p>
+    <div class="chart-stub">
+      <span class="k">The growth, drawdown, allocation, exit and index-credit charts are drawn in the next build step (Phase 5).</span>
+      <span class="k">The engine and all values above are live now.</span>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--etf)"></i> ETF total return</span>
+        <span><i class="swatch" style="background:var(--iula)"></i> IUL-A advertised</span>
+        <span><i class="swatch" style="background:var(--iulb)"></i> IUL-B index-linked</span>
+        <span><i class="swatch" style="background:var(--contrib)"></i> Contributions</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="disclosure" id="disclosure"></div>
+  <p class="footnote" id="footnote"></p>
+</div>
+
+<script>
+/*__CALC__*/
+
+const PRICES = /*__PRICES__*/;
+
+// ---- formatting helpers ----
+const usd0 = (x) => x.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+const usd2 = (x) => x.toLocaleString("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct = (x, d = 1) => (x * 100).toFixed(d) + "%";
+const longDate = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+const monthYear = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { year: "numeric", month: "short" });
+const $ = (id) => document.getElementById(id);
+
+const DEFAULT_INPUTS = { budget: 300, ticker: "SPY", rate: 8, charge: 49.26, cap: 8, floor: 0, participation: 100, spread: 0 };
+
+function monthEnds(ticker) { return PRICES[ticker.toLowerCase()].monthly.map((r) => r.date); }
+
+// Populate the window selects for the chosen ticker, defaulting to a 240-month
+// window ending at the last available month-end (or the full history if shorter).
+function populateWindow(ticker, keep) {
+  const dates = monthEnds(ticker);
+  const startSel = $("win-start"), endSel = $("win-end");
+  const opts = dates.map((d) => `<option value="${d}">${monthYear(d)}</option>`).join("");
+  startSel.innerHTML = opts; endSel.innerHTML = opts;
+  const endIdx = dates.length - 1;
+  const startIdx = Math.max(0, endIdx - 239);
+  startSel.value = keep && dates.includes(keep.start) ? keep.start : dates[startIdx];
+  endSel.value = keep && dates.includes(keep.end) ? keep.end : dates[endIdx];
+}
+
+function readInputs() {
+  return {
+    budget: parseFloat($("budget").value),
+    ticker: $("ticker").value,
+    start: $("win-start").value,
+    end: $("win-end").value,
+    rate: parseFloat($("rate").value),
+    charge: parseFloat($("charge").value),
+    cap: parseFloat($("cap").value),
+    floor: parseFloat($("floor").value),
+    participation: parseFloat($("participation").value),
+    spread: parseFloat($("spread").value),
+  };
+}
+
+function toConfig(inp) {
+  return {
+    budget: inp.budget,
+    iulAnnualCredit: inp.rate / 100,
+    monthlyCharge: inp.charge,          // fixed dollar charge, never refit here
+    cap: inp.cap / 100,
+    floor: inp.floor / 100,
+    participation: inp.participation / 100,
+    spread: inp.spread / 100,
+  };
+}
+
+function showError(msgs) {
+  const bar = $("errbar");
+  if (!msgs.length) { bar.hidden = true; return; }
+  bar.hidden = false;
+  bar.textContent = msgs.join("  ");
+}
+
+function render() {
+  const inp = readInputs();
+  if (inp.start > inp.end) { showError(["The first month must be on or before the last month."]); return; }
+
+  const cfg = toConfig(inp);
+  const errs = validateInputs(cfg);
+  if (errs.length) { showError(errs); return; }
+  showError([]);
+
+  let w;
+  try { w = prepareWindow(PRICES, inp.ticker, inp.start, inp.end); }
+  catch (e) { showError([e.message]); return; }
+
+  const s = computeScenario(w, cfg);
+  const valuationDate = PRICES.meta.last_completed_month_end;
+
+  // net readout
+  $("net-readout").textContent = usd2(inp.budget - inp.charge) + " / mo";
+
+  // tiles
+  $("v-contrib").textContent = usd0(s.contributed);
+  $("s-contrib").textContent = `${w.periods} monthly deposits`;
+  $("v-etf").textContent = usd0(s.etf.finalValue);
+  $("s-etf").textContent = `${s.etf.finalValue >= s.contributed ? "+" : ""}${usd0(s.etf.finalValue - s.contributed)} vs. paid in`;
+  $("v-iula").textContent = usd0(s.iulA.finalValue);
+  $("s-iula").textContent = `${pct(s.returnOnPremium, 2)} return on premiums`;
+  $("v-iulb").textContent = usd0(s.iulB.finalValue);
+  const capped = s.iulB.credits.filter((c) => Math.abs(c.creditRate - cfg.cap) < 1e-9).length;
+  const floored = s.iulB.credits.filter((c) => Math.abs(c.creditRate - cfg.floor) < 1e-9).length;
+  $("s-iulb").textContent = `${capped} yr at cap · ${floored} yr at floor`;
+
+  // dynamic headline answer
+  $("answer").innerHTML =
+    `Had you invested <b>${usd0(inp.budget)}</b> each month in <b>${inp.ticker}</b> from ` +
+    `<b>${longDate(w.firstDate)}</b> to <b>${longDate(w.lastDate)}</b>, your <b>${usd0(s.contributed)}</b> ` +
+    `would have been worth approximately <b>${usd0(s.etf.finalValue)}</b> as of ${longDate(valuationDate)}, ` +
+    `with dividends reinvested, before personal taxes and trading costs. The advertised IUL illustration shows ` +
+    `<b>${usd0(s.iulA.finalValue)}</b>; the same policy credited on the real S&P 500 price index reaches ` +
+    `<b>${usd0(s.iulB.finalValue)}</b>.`;
+
+  // ticker hint
+  const prov = PRICES.meta;
+  $("ticker-hint").textContent = inp.ticker === "SPY"
+    ? "SPY stands in for the index; VOO launched later."
+    : "VOO history only — no pre-2010 backfill.";
+  $("win-hint").textContent = `Buying at each month-end close. Latest verified close: ${longDate(valuationDate)}.`;
+
+  // disclosure + provenance footnote
+  $("disclosure").textContent =
+    "Historical ETF backtest and modeled IUL illustrations (advertised flat rate and index-linked reconstruction). Neither guarantees future outcomes.";
+  $("footnote").textContent =
+    `Prices: ${prov.provider}, retrieved ${new Date(prov.retrieved_utc).toISOString().slice(0, 10)}. ` +
+    `ETF uses adjusted close (total return); IUL-B credits the S&P 500 price index (dividends excluded). ` +
+    `Policy figures are user-reported and unverified. Iterative vs. direct ETF check agrees to ${usd2(Math.abs(s.etf.finalValue - s.etfDirectCheck))}.`;
+}
+
+function wire() {
+  populateWindow(DEFAULT_INPUTS.ticker);
+  ["budget", "rate", "charge", "cap", "floor", "participation", "spread", "win-start", "win-end"]
+    .forEach((id) => $(id).addEventListener("input", render));
+  $("ticker").addEventListener("change", () => {
+    const cur = { start: $("win-start").value, end: $("win-end").value };
+    populateWindow($("ticker").value, cur);
+    render();
+  });
+  $("reset").addEventListener("click", () => {
+    for (const [k, v] of Object.entries(DEFAULT_INPUTS)) { if ($(k)) $(k).value = v; }
+    populateWindow(DEFAULT_INPUTS.ticker);
+    render();
+  });
+  render();
+}
+
+wire();
+</script>
