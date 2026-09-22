@@ -1,4 +1,4 @@
-<title>$300 al Mes</title>
+<title>Invertir $300 al Mes</title>
 <meta name="description" content="En qué se habrían convertido $300 al mes en un ETF del S&P 500, frente a una ilustración de seguro de vida universal indexado." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,8 +56,10 @@
 
   .eyebrow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 14px; }
   .headline { font-size: clamp(26px, 4.4vw, 44px); line-height: 1.12; letter-spacing: -0.01em; max-width: 20ch; }
+  .subtitle { margin-top: 16px; font-size: clamp(15px, 1.7vw, 18px); line-height: 1.4; color: var(--ink); font-weight: 500; max-width: 60ch; padding-left: 14px; border-left: 3px solid var(--iula); }
   .answer { margin-top: 18px; font-size: clamp(15px, 1.6vw, 17px); color: var(--muted); max-width: 62ch; }
   .answer b { color: var(--ink); font-weight: 600; }
+  .illus-note { margin-top: 28px; font-size: 12.5px; color: var(--faint); }
 
   .tiles { display: grid; gap: 12px; margin-top: 32px; grid-template-columns: repeat(4, 1fr); }
   .tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 6px; border-top: 3px solid var(--line-strong); }
@@ -156,7 +158,8 @@
 <div class="wrap">
   <header>
     <p class="eyebrow">Backtest histórico · ilustración hipotética</p>
-    <h1 class="headline">¿Hasta dónde te habrían llevado tus $300 al mes?</h1>
+    <h1 class="headline">Invertir $300 al mes: ¿IUL o inversión directa?</h1>
+    <p class="subtitle">Si hubieras contratado el IUL, en el caso extremo de fallecimiento —o de enfermedad terminal, según la póliza— habrías recibido el beneficio completo publicitado de $214,000.</p>
     <p class="answer" id="answer"></p>
   </header>
 
@@ -166,14 +169,18 @@
       <h3>Un seguro con una cuenta de ahorro ligada al mercado</h3>
       <p>El seguro de vida universal indexado (IUL) es un seguro de vida permanente con una cuenta de valor en efectivo. Cada prima paga primero el coste del seguro y los cargos de la póliza; lo que queda se acredita con un interés ligado a un índice bursátil como el S&amp;P 500.</p>
       <p>El crédito tiene tope y piso. Un tope —a menudo cercano al 8%— limita las ganancias en los años buenos, un piso del 0% evita que una caída del índice recorte el crédito, y los dividendos quedan excluidos. La póliza paga un beneficio por fallecimiento mientras siga financiada.</p>
+      <p>Es un producto muy poco líquido, pensado para un plazo largo y fijo —de 10 a 20 años, o de por vida—. Si quieres rescatar o retirar tu cuenta antes de terminar todo el plazo del contrato, te penalizan con cargos altos sobre el valor de tu cuenta.</p>
     </div>
     <div class="def etf">
       <span class="tag">Inversión directa en un índice</span>
       <h3>Eres dueño del fondo, y con él de todo el mercado</h3>
       <p>Invertir directamente significa comprar un ETF de bajo coste como SPY o VOO que replica el S&amp;P 500. Eres dueño del fondo, recibes sus dividendos (aquí reinvertidos) y su valor se mueve con el mercado.</p>
-      <p>No hay cargos de seguro ni tope a las ganancias, pero tampoco hay piso: una caída del mercado golpea tu saldo por completo. Puedes vender cualquier día de mercado, y los dividendos y las ganancias tributan. Por sí solo no ofrece ningún seguro de vida.</p>
+      <p>No hay cargos de seguro ni tope a las ganancias, pero tampoco hay piso: una caída del mercado golpea tu saldo por completo. Por sí solo no ofrece ningún seguro de vida.</p>
+      <p>Los ETF son muy líquidos: puedes salir en cualquier momento al valor de mercado, y los dividendos y las ganancias tributan. El S&amp;P 500 es un índice de las 500 mayores empresas cotizadas de EE.&nbsp;UU. y una referencia amplia del mercado estadounidense.</p>
     </div>
   </div>
+
+  <p class="illus-note">Las siguientes cifras son ilustrativas, por defecto a lo largo de 20 años (240 aportaciones mensuales).</p>
 
   <div class="tiles">
     <div class="tile"><span class="label">Total aportado</span><span class="kind">tu dinero</span><span class="value mono" id="v-contrib">—</span><span class="sub" id="s-contrib"></span></div>
@@ -184,7 +191,7 @@
 
   <section>
     <h2 class="sec-title">Configura el escenario</h2>
-    <p class="sec-note">Cada cifra se actualiza desde el historial de precios en caché — sin rentabilidades supuestas en el lado del ETF. El cargo mensual del IUL se ajusta una sola vez a la ilustración reportada de $142,672 y luego se mantiene fijo; cambiar el presupuesto o el periodo no lo reajusta.</p>
+    <p class="sec-note">Usa esto para saber cuánto habría crecido tu dinero en un periodo determinado, con una cantidad determinada invertida en los ETF que replican el S&amp;P 500. Cada cifra se actualiza desde el historial de precios en caché — sin rentabilidades supuestas en el lado del ETF. El cargo mensual del IUL se ajusta una sola vez a la ilustración reportada de $142,672 y luego se mantiene fijo; cambiar el presupuesto o el periodo no lo reajusta.</p>
     <div class="panel">
       <div class="panel-head"><h3>Controles</h3><button id="reset" type="button">Restablecer valores</button></div>
       <div class="groups">
@@ -585,7 +592,7 @@ function render() {
     { label: "Valor de la cuenta\ndel IUL", value: s.iulA.finalValue, color: cvar("--iula") },
     { label: "Valor de rescate\ndel IUL", value: s.iulA.finalValue, color: cvar("--iulb") },
   ]);
-  $("exit-note").innerHTML = `El valor de rescate mostrado es igual al valor de la cuenta porque no se ha proporcionado un calendario de cargos de rescate — <b>un calendario real lo reduciría, sobre todo en los primeros años</b>. Rescatar también termina la cobertura de ${usd0(cfg.deathBenefit || 214000)}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.`;
+  $("exit-note").innerHTML = `El valor de rescate mostrado es igual al valor de la cuenta porque no se ha proporcionado un calendario de cargos de rescate — <b>un calendario real lo reduciría, sobre todo en los primeros años</b>. El importe de retiro anticipado del IUL está totalmente especificado en el contrato y puede llegar a superar la mitad del valor de la cuenta. Rescatar también termina la cobertura de ${usd0(cfg.deathBenefit || 214000)}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.`;
 
   $("credit-rule").innerHTML = `crédito = max(piso <b>${inp.floor}%</b>, min(tope <b>${inp.cap}%</b>, <b>${inp.participation}%</b> × rentabilidad del índice − diferencial <b>${inp.spread}%</b>))`;
   creditCurve($("chart-credit"), cfg, s.iulB.credits);
