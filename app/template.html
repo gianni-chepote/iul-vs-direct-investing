@@ -157,6 +157,18 @@
     .chart-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 480px) { .tiles { grid-template-columns: 1fr; } }
+
+  /* Scroll-reveal (Apple-style); only active when JS adds .anim, off for reduced motion */
+  .anim .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+  .anim .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .anim .reveal { opacity: 1 !important; transform: none !important; transition: none; } }
+
+  /* Progressive disclosure */
+  details.more { margin-top: 6px; }
+  details.more > summary { cursor: pointer; font-size: 13px; color: var(--etf); font-weight: 600; list-style: none; padding: 4px 0; }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary::after { content: " +"; font-family: "IBM Plex Mono", monospace; }
+  details.more[open] > summary::after { content: " –"; }
 </style>
 <!--__SPLIT__-->
 <div class="wrap">
@@ -281,6 +293,8 @@
         </tbody>
       </table>
     </div>
+    <details class="more">
+    <summary>La letra pequeña que debes conocer</summary>
     <div class="caveats">
       <div class="caveat"><span>El IUL es un seguro permanente. Un plan de primas a 20 años no garantiza una póliza pagada por completo — los cargos crecientes pueden exigir más financiación más adelante.</span></div>
       <div class="caveat"><span>Un piso del 0% no evita pérdidas del valor en efectivo por <b>cargos</b>. Si dejas de pagar las primas, los cargos continúan; la póliza puede caducar.</span></div>
@@ -289,6 +303,7 @@
       <div class="caveat"><span>Un ETF no ofrece ningún seguro de vida. "Compra un seguro temporal e invierte la diferencia" combina cobertura temporal barata con el crecimiento del mercado.</span></div>
       <div class="caveat"><span>Esta página compara rentabilidades pasadas reales del ETF con una ilustración modelada del IUL. Los resultados pasados no predicen los futuros.</span></div>
     </div>
+    </details>
   </section>
 
   <div class="disclosure" id="disclosure"></div>
@@ -314,6 +329,14 @@ const svgNS = "http://www.w3.org/2000/svg";
 const DEFAULT_INPUTS = { budget: 300, ticker: "SPY", rate: 8, charge: 49.26, cap: 8, floor: 0, participation: 100, spread: 0 };
 const SURRENDER_PCT = 0.35; // valor de rescate ilustrativo: 35% del valor de la cuenta
 const VB = { w: 820, h: 320, l: 54, r: 96, t: 16, b: 30 };
+// Narrower viewBox on phones so axis text scales up and end-labels are dropped.
+function sizeVB() {
+  const phone = window.innerWidth < 620;
+  VB.w = phone ? 500 : 820;
+  VB.h = phone ? 300 : 320;
+  VB.l = phone ? 42 : 54;
+  VB.r = phone ? 16 : 96; // no room for end-labels on phone; the legend carries identity
+}
 
 function monthEnds(ticker) { return PRICES[ticker.toLowerCase()].monthly.map((r) => r.date); }
 
@@ -365,6 +388,7 @@ function lineChart(container, dates, series, valFmt) {
   const svg = newSvg(container);
   const iw = VB.w - VB.l - VB.r, ih = VB.h - VB.t - VB.b, n = dates.length;
   const ink = cvar("--ink"), muted = cvar("--muted"), grid = cvar("--grid");
+  const phone = VB.w < 620, axFont = phone ? 13 : 11;
   let max = 0; series.forEach((s) => s.values.forEach((v) => { if (v > max) max = v; }));
   const yMax = max * 1.06 || 1;
   const X = (i) => VB.l + (n <= 1 ? 0 : (i / (n - 1)) * iw);
@@ -374,19 +398,22 @@ function lineChart(container, dates, series, valFmt) {
   for (let g = 0; g <= ticks; g++) {
     const v = (yMax / ticks) * g, y = Y(v);
     svg.appendChild(el("line", { x1: VB.l, y1: y, x2: VB.l + iw, y2: y, stroke: grid, "stroke-width": 1 }));
-    svg.appendChild(el("text", { x: VB.l - 8, y: y + 3.5, "text-anchor": "end", "font-size": 11, fill: muted }, kfmt(v)));
+    svg.appendChild(el("text", { x: VB.l - 8, y: y + 3.5, "text-anchor": "end", "font-size": axFont, fill: muted }, kfmt(v)));
   }
+  const yrStep = phone ? 5 : 3;
   let lastYr = "";
-  dates.forEach((d, i) => { const yr = d.slice(0, 4); if (yr !== lastYr && (+yr) % 3 === 0) { lastYr = yr; svg.appendChild(el("text", { x: X(i), y: VB.h - 8, "text-anchor": "middle", "font-size": 11, fill: muted }, yr)); } });
+  dates.forEach((d, i) => { const yr = d.slice(0, 4); if (yr !== lastYr && (+yr) % yrStep === 0) { lastYr = yr; svg.appendChild(el("text", { x: X(i), y: VB.h - 8, "text-anchor": "middle", "font-size": phone ? 13 : 11, fill: muted }, yr)); } });
 
   series.forEach((s) => {
     let d = "";
     s.values.forEach((v, i) => { d += (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1) + " "; });
     svg.appendChild(el("path", { d, fill: "none", stroke: s.color, "stroke-width": s.width || 2, "stroke-dasharray": s.dash || "none", "vector-effect": "non-scaling-stroke", "stroke-linejoin": "round" }));
   });
-  const labels = series.map((s) => ({ nm: s.short, color: s.color, y: Y(s.values[n - 1]), v: s.values[n - 1] })).sort((a, b) => a.y - b.y);
-  for (let i = 1; i < labels.length; i++) if (labels[i].y - labels[i - 1].y < 13) labels[i].y = labels[i - 1].y + 13;
-  labels.forEach((L) => svg.appendChild(el("text", { x: VB.l + iw + 6, y: L.y + 3.5, "font-size": 11, "font-weight": 500, fill: L.color }, L.nm)));
+  if (!phone) {
+    const labels = series.map((s) => ({ nm: s.short, color: s.color, y: Y(s.values[n - 1]), v: s.values[n - 1] })).sort((a, b) => a.y - b.y);
+    for (let i = 1; i < labels.length; i++) if (labels[i].y - labels[i - 1].y < 13) labels[i].y = labels[i - 1].y + 13;
+    labels.forEach((L) => svg.appendChild(el("text", { x: VB.l + iw + 6, y: L.y + 3.5, "font-size": 11, "font-weight": 500, fill: L.color }, L.nm)));
+  }
 
   const tip = ensureTip(container);
   const cross = el("line", { y1: VB.t, y2: VB.t + ih, stroke: cvar("--line-strong"), "stroke-width": 1, opacity: 0 });
@@ -408,8 +435,12 @@ function lineChart(container, dates, series, valFmt) {
     tip.style.left = Math.min(r.width - tip.offsetWidth - 6, Math.max(6, left + 12)) + "px";
     tip.style.top = "18px";
   }
+  const hide = () => { tip.style.opacity = 0; cross.setAttribute("opacity", 0); dots.forEach((c) => c.setAttribute("opacity", 0)); };
   hit.addEventListener("mousemove", move);
-  hit.addEventListener("mouseleave", () => { tip.style.opacity = 0; cross.setAttribute("opacity", 0); dots.forEach((c) => c.setAttribute("opacity", 0)); });
+  hit.addEventListener("mouseleave", hide);
+  hit.addEventListener("touchstart", (ev) => move(ev.touches[0]), { passive: true });
+  hit.addEventListener("touchmove", (ev) => move(ev.touches[0]), { passive: true });
+  hit.addEventListener("touchend", hide);
 }
 
 /* ---------- area chart (drawdown) ---------- */
@@ -421,14 +452,15 @@ function areaChart(container, dates, values) {
   const yMin = min * 1.08 || -0.1;
   const X = (i) => VB.l + (i / (n - 1)) * iw;
   const Y = (v) => VB.t + (v / yMin) * ih;
+  const phone = VB.w < 620, axFont = phone ? 13 : 11, yrStep = phone ? 5 : 3;
   const ticks = 4;
   for (let g = 0; g <= ticks; g++) {
     const v = (yMin / ticks) * g, y = Y(v);
     svg.appendChild(el("line", { x1: VB.l, y1: y, x2: VB.l + iw, y2: y, stroke: grid, "stroke-width": 1 }));
-    svg.appendChild(el("text", { x: VB.l - 8, y: y + 3.5, "text-anchor": "end", "font-size": 11, fill: muted }, Math.round(v * 100) + "%"));
+    svg.appendChild(el("text", { x: VB.l - 8, y: y + 3.5, "text-anchor": "end", "font-size": axFont, fill: muted }, Math.round(v * 100) + "%"));
   }
   let lastYr = "";
-  dates.forEach((d, i) => { const yr = d.slice(0, 4); if (yr !== lastYr && (+yr) % 3 === 0) { lastYr = yr; svg.appendChild(el("text", { x: X(i), y: VB.h - 8, "text-anchor": "middle", "font-size": 11, fill: muted }, yr)); } });
+  dates.forEach((d, i) => { const yr = d.slice(0, 4); if (yr !== lastYr && (+yr) % yrStep === 0) { lastYr = yr; svg.appendChild(el("text", { x: X(i), y: VB.h - 8, "text-anchor": "middle", "font-size": axFont, fill: muted }, yr)); } });
   let dPath = "M" + VB.l + " " + Y(0) + " ";
   values.forEach((v, i) => { dPath += "L" + X(i).toFixed(1) + " " + Y(v).toFixed(1) + " "; });
   dPath += "L" + (VB.l + iw) + " " + Y(0) + " Z";
@@ -442,7 +474,7 @@ function areaChart(container, dates, values) {
   const cross = el("line", { y1: VB.t, y2: VB.t + ih, stroke: cvar("--line-strong"), "stroke-width": 1, opacity: 0 }); svg.appendChild(cross);
   const dot = el("circle", { r: 3.5, fill: warn, stroke: cvar("--surface"), "stroke-width": 1.5, opacity: 0 }); svg.appendChild(dot);
   const hit = el("rect", { x: VB.l, y: VB.t, width: iw, height: ih, fill: "transparent" }); svg.appendChild(hit);
-  hit.addEventListener("mousemove", (ev) => {
+  function move(ev) {
     const r = svg.getBoundingClientRect(), sx = VB.w / r.width;
     let i = Math.round((((ev.clientX - r.left) * sx - VB.l) / iw) * (n - 1)); i = Math.max(0, Math.min(n - 1, i));
     const px = X(i); cross.setAttribute("x1", px); cross.setAttribute("x2", px); cross.setAttribute("opacity", 1);
@@ -451,8 +483,13 @@ function areaChart(container, dates, values) {
     tip.innerHTML = `<div class="d">${longDate(dates[i])}</div><div class="row"><span class="nm">Bajo el máximo</span><span class="v">${(values[i] * 100).toFixed(1)}%</span></div>`;
     const left = (px / VB.w) * r.width;
     tip.style.left = Math.min(r.width - tip.offsetWidth - 6, Math.max(6, left + 12)) + "px"; tip.style.top = "18px";
-  });
-  hit.addEventListener("mouseleave", () => { tip.style.opacity = 0; cross.setAttribute("opacity", 0); dot.setAttribute("opacity", 0); });
+  }
+  const hide = () => { tip.style.opacity = 0; cross.setAttribute("opacity", 0); dot.setAttribute("opacity", 0); };
+  hit.addEventListener("mousemove", move);
+  hit.addEventListener("mouseleave", hide);
+  hit.addEventListener("touchstart", (ev) => move(ev.touches[0]), { passive: true });
+  hit.addEventListener("touchmove", (ev) => move(ev.touches[0]), { passive: true });
+  hit.addEventListener("touchend", hide);
 }
 
 /* ---------- grouped comparison bars (exit) ---------- */
@@ -474,6 +511,7 @@ function compareBars(container, items) {
 
 /* ---------- main render ---------- */
 function render() {
+  sizeVB();
   const inp = readInputs();
   if (inp.start > inp.end) { showError(["El primer mes debe ser igual o anterior al último mes."]); return; }
   const cfg = toConfig(inp);
@@ -536,7 +574,21 @@ function wire() {
   const mq = window.matchMedia("(prefers-color-scheme: dark)");
   mq.addEventListener && mq.addEventListener("change", render);
   new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(render, 200); });
   render();
 }
 wire();
+
+/* Apple-style scroll reveal — only when supported and motion is allowed; the
+   hero stays visible at rest, everything else fades/slides in on scroll. */
+(function () {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!("IntersectionObserver" in window) || reduce) return;
+  document.body.classList.add("anim");
+  document.querySelectorAll(".wrap > section, .def-grid, .tiles").forEach((el) => el.classList.add("reveal"));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+})();
 </script>
