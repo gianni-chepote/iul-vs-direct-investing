@@ -124,8 +124,33 @@
   .exit-note { font-size: 12.5px; color: var(--muted); margin-top: 10px; }
   .exit-note b { color: var(--ink); }
 
+  /* Explainer + comparison */
+  .def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+  .def { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; border-top: 3px solid var(--line-strong); }
+  .def.iul { border-top-color: var(--iula); }
+  .def.etf { border-top-color: var(--etf); }
+  .def .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; display: block; }
+  .def.iul .tag { color: var(--iula); }
+  .def.etf .tag { color: var(--etf); }
+  .def h3 { font-size: 18px; margin-bottom: 8px; }
+  .def p { font-size: 13.5px; color: var(--muted); margin: 0; }
+  .def p + p { margin-top: 10px; }
+  .cmp-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--line); }
+  .cmp { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 560px; }
+  .cmp th, .cmp td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .cmp thead th { background: var(--surface-2); font-family: "IBM Plex Sans", sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.03em; }
+  .cmp thead th.c-iul { color: var(--iula); }
+  .cmp thead th.c-etf { color: var(--etf); }
+  .cmp td:first-child, .cmp th:first-child { color: var(--muted); font-weight: 500; width: 128px; }
+  .cmp tbody tr:last-child td { border-bottom: none; }
+  .caveats { margin-top: 20px; display: grid; gap: 10px; }
+  .caveat { display: flex; gap: 10px; font-size: 13px; color: var(--muted); align-items: flex-start; }
+  .caveat::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--iula); margin-top: 7px; }
+  .caveat b { color: var(--ink); font-weight: 600; }
+
   @media (max-width: 860px) {
     .tiles { grid-template-columns: repeat(2, 1fr); }
+    .def-grid { grid-template-columns: 1fr; }
     .groups { grid-template-columns: 1fr; }
     .group { border-right: none; }
     .chart-grid { grid-template-columns: 1fr; }
@@ -140,6 +165,21 @@
     <h1 class="headline">Where would your $300 a month have taken you?</h1>
     <p class="answer" id="answer"></p>
   </header>
+
+  <div class="def-grid">
+    <div class="def iul">
+      <span class="tag">Indexed universal life</span>
+      <h3>Insurance with a market-linked savings account</h3>
+      <p>Indexed universal life (IUL) is permanent life insurance with a cash-value account attached. Each premium first pays the cost of insurance and policy charges; what remains is credited with interest tied to a stock index such as the S&amp;P 500.</p>
+      <p>The credit is capped and floored. A cap — often near 8% — limits gains in strong years, a 0% floor keeps an index fall from cutting the credit, and dividends are excluded. The policy pays a death benefit for as long as it stays funded.</p>
+    </div>
+    <div class="def etf">
+      <span class="tag">Direct index investing</span>
+      <h3>You own the fund, and the whole market with it</h3>
+      <p>Investing directly means buying a low-cost index ETF such as SPY or VOO that holds the S&amp;P 500. You own the fund outright, receive its dividends (reinvested here), and its value moves with the market.</p>
+      <p>There are no insurance charges and no cap on gains — but no floor either, so a market fall hits your balance in full. You can sell on any trading day, and dividends and gains are taxable. On its own it provides no life insurance.</p>
+    </div>
+  </div>
 
   <div class="tiles">
     <div class="tile"><span class="label">Total paid in</span><span class="kind">your money</span><span class="value mono" id="v-contrib">—</span><span class="sub" id="s-contrib"></span></div>
@@ -238,6 +278,35 @@
       <div class="chart-head"><span class="k" id="credit-rule"></span></div>
       <div id="chart-credit"></div>
       <div class="legend"><span><i class="swatch" style="border-top-color:var(--iulb)"></i> Credited rate</span><span><i class="dot" style="background:var(--faint)"></i> Actual policy years</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title">How they really differ</h2>
+    <p class="sec-note">Neither product is simply better — the right choice turns on whether you need lasting life insurance, and how you weigh caps, fees, liquidity and taxes. The ETF figures on this page are before personal taxes, so the IUL's tax treatment is a real advantage the charts do not show.</p>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th></th><th class="c-iul">Indexed universal life</th><th class="c-etf">Direct ETF investing</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Growth engine</td><td>Index credit, capped and floored; dividends excluded</td><td>Full market total return, dividends included, no cap</td></tr>
+          <tr><td>Down years</td><td>0% floor protects the credited interest — but charges still apply</td><td>You take the full market loss; no floor</td></tr>
+          <tr><td>Costs</td><td>Cost of insurance plus policy charges, which rise with age</td><td>Fund expense ratio (~0.03–0.09%) and trading costs</td></tr>
+          <tr><td>Access to cash</td><td>Surrender charges for years; policy loans reduce the benefit</td><td>Sell on any market day, then settlement and taxes</td></tr>
+          <tr><td>Life insurance</td><td>Death benefit while funded (here $214,000)</td><td>None — pair with term insurance if you need cover</td></tr>
+          <tr><td>Taxes</td><td>Tax-deferred growth; death benefit generally income-tax-free; loans can be tax-free</td><td>Dividends and realized gains are taxable</td></tr>
+          <tr><td>Best suited to</td><td>A lasting insurance need plus tax-sheltered saving, accepting caps and fees</td><td>Long-horizon growth when cost, liquidity and simplicity matter most</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="caveats">
+      <div class="caveat"><span>IUL is permanent insurance. A 20-year premium plan does not guarantee a paid-up policy — rising charges can demand more funding later.</span></div>
+      <div class="caveat"><span>A 0% floor does not stop cash-value losses from <b>charges</b>. Stop paying premiums and the charges continue; the policy can lapse.</span></div>
+      <div class="caveat"><span>Surrender charges can leave proceeds below the premiums you paid, and surrendering ends the coverage.</span></div>
+      <div class="caveat"><span>Under level coverage, beneficiaries receive the death benefit, not the death benefit <b>plus</b> the cash value.</span></div>
+      <div class="caveat"><span>An ETF provides no life insurance. "Buy term and invest the difference" pairs cheap temporary cover with market growth.</span></div>
+      <div class="caveat"><span>This page compares realized past ETF returns with a modeled IUL illustration. Past results do not predict future returns.</span></div>
     </div>
   </section>
 
