@@ -796,14 +796,14 @@ function render() {
   $("v-etf").textContent = usd0(s.etf.finalValue);
   $("s-etf").textContent = `${s.etf.finalValue >= s.contributed ? "+" : ""}${usd0(s.etf.finalValue - s.contributed)} frente a lo aportado`;
   $("v-iula").textContent = usd0(s.iulA.finalValue);
-  $("s-iula").textContent = `${pct(s.returnOnPremium, 2)} de rentabilidad sobre las primas`;
+  $("s-iula").textContent = `Tasa publicitada: ${inp.rate}% anual`;
   $("v-iulb").textContent = usd0(s.iulB.finalValue);
   const capped = s.iulB.credits.filter((c) => Math.abs(c.creditRate - cfg.cap) < 1e-9).length;
   const floored = s.iulB.credits.filter((c) => Math.abs(c.creditRate - cfg.floor) < 1e-9).length;
   $("s-iulb").textContent = `${capped} años en el tope · ${floored} en el piso`;
 
   $("answer").innerHTML =
-    `Si hubieras invertido <b>${usd0(inp.budget)}</b> cada mes en <b>${inp.ticker}</b> desde el <b>${longDate(w.firstDate)}</b> hasta el <b>${longDate(w.lastDate)}</b>, tus <b>${usd0(s.contributed)}</b> valdrían aproximadamente <b>${usd0(s.etf.finalValue)}</b> al ${longDate(valuationDate)}, con dividendos reinvertidos. La ilustración publicitada del IUL muestra <b>${usd0(s.iulA.finalValue)}</b>.`;
+    `Si hubieras invertido <b>${usd0(inp.budget)}</b> cada mes en <b>${inp.ticker}</b> desde el <b>${longDate(w.firstDate)}</b> hasta el <b>${longDate(w.lastDate)}</b>, tus <b>${usd0(s.contributed)}</b> valdrían aproximadamente <b>${usd0(s.etf.finalValue)}</b> al ${longDate(valuationDate)}, con dividendos reinvertidos, mientras que la ilustración publicitada del IUL muestra <b>${usd0(s.iulA.finalValue)}</b>.`;
 
   $("ticker-hint").textContent = inp.ticker === "SPY" ? "SPY hace de sustituto del índice; VOO se lanzó después." : "Solo historial de VOO — sin relleno anterior a 2010.";
   $("win-hint").textContent = `Comprando al cierre de cada fin de mes. Último cierre verificado: ${longDate(valuationDate)}.`;

@@ -17,7 +17,7 @@ reconstruyo la página. Los `{marcadores}` son valores que se calculan en vivo.
 - **Etiqueta superior:** Backtest histórico · ilustración hipotética
 - **Título (visible, H1):** ¿Puede un IUL triplicar mi inversión de $72,000 a $214,000?
 - **Subtítulo (visible):** Sí… pero solo si mueres. En ese caso extremo —fallecimiento o enfermedad terminal, según la póliza— cobrarías los $214,000 completos. Si vives para contarlo, la historia es muy distinta.
-- **Frase dinámica (respuesta):** Si hubieras invertido **{presupuesto}** cada mes en **{ETF}** desde el **{fecha inicial}** hasta el **{fecha final}**, tus **{total aportado}** valdrían aproximadamente **{valor ETF}** al {fecha de valoración}, con dividendos reinvertidos. La ilustración publicitada del IUL muestra **{valor IUL-A}**.
+- **Frase dinámica (respuesta):** Si hubieras invertido **{presupuesto}** cada mes en **{ETF}** desde el **{fecha inicial}** hasta el **{fecha final}**, tus **{total aportado}** valdrían aproximadamente **{valor ETF}** al {fecha de valoración}, con dividendos reinvertidos, mientras que la ilustración publicitada del IUL muestra **{valor IUL-A}**.
 
 > **«El IUL te vende la ilusión de rendimiento; el ETF te da el mercado real.»**
 
@@ -47,7 +47,7 @@ Las siguientes cifras son ilustrativas, por defecto a lo largo de 20 años (240 
 |---|---|---|---|
 | 1 | Total aportado | tu dinero | {total aportado} · {n} aportaciones mensuales |
 | 2 | Valor final del ETF | Backtest histórico del ETF | {valor ETF} · {±diferencia} frente a lo aportado |
-| 3 | Ilustración IUL-A | Tasa fija publicitada · hipotética | {valor IUL-A} · {rentabilidad}% de rentabilidad sobre las primas |
+| 3 | Ilustración IUL-A | Tasa fija publicitada · hipotética | {valor IUL-A} · Tasa publicitada: {tasa}% anual |
 | 4 | IUL-B vinculado al índice | Misma póliza, créditos reales del índice | {valor IUL-B} · {x} años en el tope · {y} en el piso |
 
 ## Sección: Compruébalo tú mismo — cómo crecen tus aportaciones con el tiempo
