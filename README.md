@@ -1,50 +1,51 @@
 # IUL vs. Direct Investing
 
-An honest, data-backed comparison: what $300 a month would have become in an
-S&P 500 ETF, next to an indexed universal life (IUL) illustration.
+**🔗 Sitio en vivo (producto final):** https://gianni-chepote.github.io/iul-vs-direct-investing/
 
-The ETF side uses **actual historical total returns** (dividends reinvested).
-The IUL is modeled two ways:
+Enlace estable y siempre disponible (GitHub Pages). Es el enlace para compartir.
+Se redespliega solo en cada push a `main`. La app de Streamlit existe como
+respaldo, pero puede dormirse por inactividad.
 
-- **IUL-A — advertised illustration:** a flat 8% effective-annual credited rate,
-  fitted once to a reported $142,672 ending value, then held fixed.
-- **IUL-B — index-linked reconstruction:** the same premium and charge, but the
-  cash value is credited by applying the contract rule
-  `max(floor, min(cap, participation × index_return − spread))` to the **real
-  S&P 500 price index** (dividends excluded), annual point-to-point.
+---
 
-IUL-B shows, on data, why an advertised flat 8% is usually optimistic: caps clip
-strong years, the floor holds down years flat, and dividends never accrue.
+Una comparación honesta y basada en datos: en qué se habría convertido $300 al
+mes en un ETF del S&P 500, frente a una ilustración de seguro de vida universal
+indexado (IUL).
 
-## Layout
+El lado del ETF usa **rentabilidades históricas totales reales** (dividendos
+reinvertidos). El IUL se modela de dos formas:
 
-- `IUL-vs-index-investing.md` — original brief.
-- `revisions/` — brief revisions and two build-instruction variants
-  (`instructions CLAUDE version.md`, `instructions GPT version.md`).
-- `app/calc.js` — the calculation engine (single source of truth, tested).
-- `app/template.html` — page markup, styles and UI glue.
-- `app/index.html` — the built, self-contained page (open directly in a browser).
-- `app/` also contains an earlier Streamlit version of the tool.
-- `data/prices.json` — cached price snapshot; `data/provenance.json` — provider
-  and retrieval record.
-- `scripts/` — data snapshot, verification harness, and page build.
+- **IUL prometido (IUL-A):** una tasa fija del 8% anual, ajustada una vez al
+  valor final reportado de $142,672 y luego mantenida fija.
+- **IUL realista (IUL-B):** la misma prima y el mismo cargo, pero el valor en
+  efectivo se acredita aplicando la regla del contrato
+  `max(piso, min(tope, participación × retorno − diferencial))` sobre el
+  **índice de precios real del S&P 500** (sin dividendos), punto a punto anual.
 
-## Rebuild and verify
+## Estructura
+
+- `IUL-vs-index-investing.md` — brief original.
+- `revisions/` — revisiones del brief y variantes de instrucciones.
+- `website-copy.md` — todo el texto del sitio, para revisión.
+- `app/calc.js` — motor de cálculo (fuente única, probada).
+- `app/template.html` — marcado, estilos y lógica de la interfaz.
+- `app/index.html` — página construida, autónoma (se abre directamente).
+- `data/prices.json` — snapshot de precios en caché; `data/provenance.json`.
+- `scripts/` — snapshot de datos, verificación y build de la página.
+- `.github/workflows/pages.yml` — despliegue a GitHub Pages.
+
+## Reconstruir y verificar
 
 ```bash
-# 1. refresh the price snapshot (needs pandas + yfinance)
-python scripts/snapshot_prices.py
-
-# 2. run the verification harness (Node)
-node scripts/verify.mjs
-
-# 3. build the self-contained page
-node scripts/build_page.mjs   # -> app/index.html
+python scripts/snapshot_prices.py   # refresca el snapshot de precios
+node scripts/verify.mjs             # arnés de verificación (34 checks)
+node scripts/build_page.mjs         # -> app/index.html
 ```
 
-## Data and disclosure
+## Datos y descargo
 
-Prices via Yahoo Finance (yfinance). ETF series use adjusted close (total
-return); the IUL-B index uses the S&P 500 price close (dividends excluded).
-Historical ETF backtest and modeled IUL illustrations — neither guarantees
-future outcomes. Policy figures are user-reported and unverified.
+Precios vía Yahoo Finance (yfinance). El ETF usa el cierre ajustado
+(rentabilidad total); el IUL-B acredita el índice de precios del S&P 500
+(dividendos excluidos). Backtest histórico del ETF e ilustraciones modeladas del
+IUL — ninguna garantiza resultados futuros. Las cifras de la póliza son
+reportadas por el usuario y no verificadas.

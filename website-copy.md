@@ -1,5 +1,7 @@
 # Texto del sitio web (copy deck)
 
+**Sitio en vivo (producto final):** https://gianni-chepote.github.io/iul-vs-direct-investing/
+
 Este archivo refleja todo el texto visible de la página (`app/index.html`), en
 orden de aparición. Es una copia para revisión — el texto real vive en
 `app/template.html`. Si editas aquí y me lo dices, lo aplico a la plantilla y
