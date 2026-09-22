@@ -174,6 +174,23 @@
   details.more > summary::-webkit-details-marker { display: none; }
   details.more > summary::after { content: " +"; font-family: "IBM Plex Mono", monospace; }
   details.more[open] > summary::after { content: " –"; }
+
+  /* "Qué mirar" lead line */
+  .look-note { margin-top: 22px; font-size: 15px; line-height: 1.45; color: var(--ink); font-weight: 500; max-width: 60ch; }
+
+  /* Entrance: the title pops on open, subtitle and quote rise after it */
+  @keyframes pop { from { opacity: 0; transform: translateY(16px) scale(.94); } to { opacity: 1; transform: none; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .anim .headline { animation: pop .75s cubic-bezier(.16,1,.3,1) both; }
+  .anim .subtitle { animation: rise .7s cubic-bezier(.16,1,.3,1) .14s both; }
+  .anim .pullquote { animation: rise .7s cubic-bezier(.16,1,.3,1) .24s both; }
+  @media (prefers-reduced-motion: reduce) { .anim .headline, .anim .subtitle, .anim .pullquote { animation: none; } }
+
+  /* Dimmed "scroll down" cue */
+  .scrollcue { position: fixed; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); opacity: .62; transition: opacity .5s ease; pointer-events: none; z-index: 30; }
+  .scrollcue.hidden { opacity: 0; }
+  .scrollcue .chev { width: 11px; height: 11px; border-right: 2px solid var(--faint); border-bottom: 2px solid var(--faint); transform: rotate(45deg); }
+  @media (prefers-reduced-motion: no-preference) { .scrollcue { animation: cuebob 1.7s ease-in-out infinite; } @keyframes cuebob { 0%,100% { transform: translateX(-50%) translateY(0);} 50% { transform: translateX(-50%) translateY(6px);} } }
 </style>
 </head>
 <body>
@@ -186,6 +203,8 @@
   </header>
 
   <p class="pullquote">El IUL te vende la ilusión de rendimiento; el ETF te da el mercado real.</p>
+
+  <div class="scrollcue" id="scrollcue" aria-hidden="true">Desliza hacia abajo<span class="chev"></span></div>
 
   <div class="def-grid">
     <div class="def iul">
@@ -210,9 +229,11 @@
   <div class="tiles">
     <div class="tile"><span class="label">Total aportado</span><span class="kind">tu dinero</span><span class="value mono" id="v-contrib">—</span><span class="sub" id="s-contrib"></span></div>
     <div class="tile" data-series="etf"><span class="label">Valor final del ETF</span><span class="kind">Backtest histórico del ETF</span><span class="value mono etf" id="v-etf">—</span><span class="sub" id="s-etf"></span></div>
-    <div class="tile" data-series="iula"><span class="label">Ilustración IUL-A</span><span class="kind">Tasa fija publicitada · hipotética</span><span class="value mono iula" id="v-iula">—</span><span class="sub" id="s-iula"></span></div>
-    <div class="tile" data-series="iulb"><span class="label">IUL-B vinculado al índice</span><span class="kind">Misma póliza, créditos reales del índice</span><span class="value mono iulb" id="v-iulb">—</span><span class="sub" id="s-iulb"></span></div>
+    <div class="tile" data-series="iula"><span class="label">IUL: lo que te prometen</span><span class="kind">Tasa fija publicitada · hipotética</span><span class="value mono iula" id="v-iula">—</span><span class="sub" id="s-iula"></span></div>
+    <div class="tile" data-series="iulb"><span class="label">IUL: lo que daría de verdad</span><span class="kind">Misma póliza, créditos reales del índice</span><span class="value mono iulb" id="v-iulb">—</span><span class="sub" id="s-iulb"></span></div>
   </div>
+
+  <p class="look-note">Fíjate en la brecha entre la línea del ETF y las del IUL: esa distancia es lo que el freno del seguro le cuesta a tu dinero.</p>
 
   <section>
     <h2 class="sec-title">Compruébalo tú mismo — cómo crecen tus aportaciones con el tiempo</h2>
@@ -231,16 +252,19 @@
             <p class="hint" id="win-hint"></p></div>
         </div>
         <div class="group">
-          <h4>IUL-A · publicitado</h4>
-          <div class="field"><label for="rate">Tasa acreditada (anual efectiva)</label><input class="mono" id="rate" type="number" min="0" max="20" step="0.25" value="8" /><p class="hint">Hipotética; origen no verificado.</p></div>
-          <div class="field"><label for="charge">Cargo mensual equivalente (USD)</label><input class="mono" id="charge" type="number" min="0" step="0.01" value="49.26" /><p class="hint">Aproximación ajustada, no cargos verificados de la póliza.</p></div>
-          <div class="field"><label>Aportación neta al valor en efectivo / mes</label><div class="readout" id="net-readout">—</div></div>
+          <h4>IUL: lo que te prometen (fijo)</h4>
+          <div class="field"><label>Tasa acreditada (anual efectiva)</label><div class="readout">8% anual · fijo</div><p class="hint">Hipotética; origen no verificado. No editable.</p></div>
+          <div class="field"><label>Cargo mensual equivalente (USD)</label><div class="readout">$49.26 / mes · fijo</div><p class="hint">Aproximación ajustada, no cargos verificados de la póliza.</p></div>
+          <div class="field"><label>Aportación neta al valor en efectivo / mes</label><div class="readout" id="net-readout">—</div><p class="hint">Lo que de verdad entra a tu cuenta cada mes, después de aplicar el coste del seguro y los demás cargos.</p></div>
         </div>
         <div class="group">
-          <h4>IUL-B · créditos indexados</h4>
-          <div class="field"><div class="inline-2"><div><label for="cap">Tope</label><input class="mono" id="cap" type="number" min="0" max="50" step="0.5" value="8" /></div><div><label for="floor">Piso</label><input class="mono" id="floor" type="number" min="0" max="20" step="0.5" value="0" /></div></div></div>
-          <div class="field"><div class="inline-2"><div><label for="participation">Participación</label><input class="mono" id="participation" type="number" min="0" max="200" step="5" value="100" /></div><div><label for="spread">Diferencial</label><input class="mono" id="spread" type="number" min="0" max="20" step="0.25" value="0" /></div></div>
-            <p class="hint">Punto a punto anual sobre el índice de precios del S&amp;P 500 (sin dividendos).</p></div>
+          <h4>IUL: lo realista</h4>
+          <details class="more">
+            <summary>Opciones avanzadas</summary>
+            <div class="field" style="margin-top:12px"><div class="inline-2"><div><label for="cap">Tope</label><input class="mono" id="cap" type="number" min="0" max="50" step="0.5" value="8" /></div><div><label for="floor">Piso</label><input class="mono" id="floor" type="number" min="0" max="20" step="0.5" value="0" /></div></div></div>
+            <div class="field"><div class="inline-2"><div><label for="participation">Participación</label><input class="mono" id="participation" type="number" min="0" max="200" step="5" value="100" /></div><div><label for="spread">Diferencial</label><input class="mono" id="spread" type="number" min="0" max="20" step="0.25" value="0" /></div></div>
+              <p class="hint">Punto a punto anual sobre el índice de precios del S&amp;P 500 (sin dividendos).</p></div>
+          </details>
         </div>
       </div>
     </div>
@@ -249,14 +273,14 @@
 
   <section>
     <h2 class="sec-title">Crecimiento en el tiempo</h2>
-    <p class="sec-note">El backtest del ETF y ambas líneas del IUL en dólares, sobre las aportaciones acumuladas. Pasa el cursor para ver el valor de cada uno en cualquier mes. El IUL-B aplica la regla real de la póliza: en los años en que el índice cae, acredita 0% (el piso) —no pierde por el índice, pero los cargos siguen restando—, y en los años buenos el tope limita la ganancia.</p>
+    <p class="sec-note">El backtest del ETF y ambas líneas del IUL en dólares, sobre las aportaciones acumuladas. Pasa el cursor para ver el valor de cada uno en cualquier mes. El «IUL realista» aplica la regla real de la póliza: en los años en que el índice cae, acredita 0% (el piso) —no pierde por el índice, pero los cargos siguen restando—, y en los años buenos el tope limita la ganancia.</p>
     <div class="chart-card">
       <div class="chart-head"><span class="k">Valor de la cuenta, fin de mes</span><span class="k" id="growth-sum"></span></div>
       <div id="chart-growth"></div>
       <div class="legend">
         <span><i class="swatch" style="border-top-color:var(--etf)"></i> ETF (rentabilidad total)</span>
-        <span><i class="swatch" style="border-top-color:var(--iula);border-top-style:dashed"></i> IUL-A publicitado</span>
-        <span><i class="swatch" style="border-top-color:var(--iulb);border-top-style:dashed"></i> IUL-B vinculado al índice</span>
+        <span><i class="swatch" style="border-top-color:var(--iula);border-top-style:dashed"></i> IUL prometido</span>
+        <span><i class="swatch" style="border-top-color:var(--iulb);border-top-style:dashed"></i> IUL realista</span>
         <span><i class="swatch" style="border-top-color:var(--contrib)"></i> Aportaciones</span>
       </div>
     </div>
@@ -632,7 +656,7 @@ const cvar = (n) => getComputedStyle(document.documentElement).getPropertyValue(
 const svgNS = "http://www.w3.org/2000/svg";
 
 const DEFAULT_INPUTS = { budget: 300, ticker: "SPY", rate: 8, charge: 49.26, cap: 8, floor: 0, participation: 100, spread: 0 };
-const SURRENDER_PCT = 0.35; // valor de rescate ilustrativo: 35% del valor de la cuenta
+const SURRENDER_PCT = 0.45; // valor de rescate SUPUESTO: 45% del valor de la cuenta
 const VB = { w: 820, h: 320, l: 54, r: 96, t: 16, b: 30 };
 // Narrower viewBox on phones so axis text scales up and end-labels are dropped.
 function sizeVB() {
@@ -658,7 +682,7 @@ function readInputs() {
   return {
     budget: parseFloat($("budget").value), ticker: $("ticker").value,
     start: $("win-start").value, end: $("win-end").value,
-    rate: parseFloat($("rate").value), charge: parseFloat($("charge").value),
+    rate: DEFAULT_INPUTS.rate, charge: DEFAULT_INPUTS.charge, // IUL-A fijo, no editable
     cap: parseFloat($("cap").value), floor: parseFloat($("floor").value),
     participation: parseFloat($("participation").value), spread: parseFloat($("spread").value),
   };
@@ -849,11 +873,11 @@ function render() {
   const contribSeries = Array.from({ length: w.periods }, (_, i) => inp.budget * (i + 1));
   lineChart($("chart-growth"), w.dates, [
     { short: "ETF", color: cvar("--etf"), values: s.etf.series, width: 2.4 },
-    { short: "IUL-A", color: cvar("--iula"), dash: "6 4", values: s.iulA.series },
-    { short: "IUL-B", color: cvar("--iulb"), dash: "2 4", values: s.iulB.series },
+    { short: "Prometido", color: cvar("--iula"), dash: "6 4", values: s.iulA.series },
+    { short: "Realista", color: cvar("--iulb"), dash: "2 4", values: s.iulB.series },
     { short: "Aportado", color: cvar("--contrib"), width: 1.5, values: contribSeries },
   ], usd0);
-  $("growth-sum").innerHTML = `ETF <b>${usd0(s.etf.finalValue)}</b> · publicitado <b>${usd0(s.iulA.finalValue)}</b> · vinculado al índice <b>${usd0(s.iulB.finalValue)}</b>`;
+  $("growth-sum").innerHTML = `ETF <b>${usd0(s.etf.finalValue)}</b> · IUL prometido <b>${usd0(s.iulA.finalValue)}</b> · IUL realista <b>${usd0(s.iulB.finalValue)}</b>`;
 
   areaChart($("chart-dd"), w.etfDailyDates, s.drawdown.series);
   $("dd-sum").innerHTML = `Peor: <b>${pct(s.drawdown.worst)}</b>`;
@@ -862,9 +886,9 @@ function render() {
   compareBars($("chart-exit"), [
     { label: "ETF\n(vender en el mercado)", value: s.etf.finalValue, color: cvar("--etf") },
     { label: "Valor de la cuenta\ndel IUL", value: s.iulA.finalValue, color: cvar("--iula") },
-    { label: "Rescate del IUL\n(ilustrativo, 35%)", value: surrenderValue, color: cvar("--warn") },
+    { label: "Rescate del IUL\n(supuesto, 45%)", value: surrenderValue, color: cvar("--warn") },
   ]);
-  $("exit-note").innerHTML = `El valor de rescate mostrado es un ejemplo ilustrativo: <b>el 35% del valor de la cuenta</b>, es decir, un cargo de rescate del 65%. El calendario real está totalmente especificado en tu contrato y, sobre todo en los primeros años, puede quedarse con más de la mitad de tu dinero. Rescatar también termina la cobertura de ${usd0(cfg.deathBenefit || 214000)}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.`;
+  $("exit-note").innerHTML = `<b>Supuesto:</b> el valor de rescate mostrado es una suposición — <b>el 45% del valor de la cuenta</b>, es decir, un cargo de rescate del 55%. El calendario real está totalmente especificado en tu contrato y, sobre todo en los primeros años, puede quedarse con más de la mitad de tu dinero. Rescatar también termina la cobertura de ${usd0(cfg.deathBenefit || 214000)}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.`;
 
   $("disclosure").textContent ="Backtest histórico del ETF e ilustraciones modeladas del IUL (tasa fija publicitada y reconstrucción vinculada al índice). Ninguna garantiza resultados futuros.";
   const prov = PRICES.meta;
@@ -873,7 +897,7 @@ function render() {
 
 function wire() {
   populateWindow(DEFAULT_INPUTS.ticker);
-  ["budget", "rate", "charge", "cap", "floor", "participation", "spread", "win-start", "win-end"].forEach((id) => $(id).addEventListener("input", render));
+  ["budget", "cap", "floor", "participation", "spread", "win-start", "win-end"].forEach((id) => $(id).addEventListener("input", render));
   $("ticker").addEventListener("change", () => { const cur = { start: $("win-start").value, end: $("win-end").value }; populateWindow($("ticker").value, cur); render(); });
   $("reset").addEventListener("click", () => { for (const [k, v] of Object.entries(DEFAULT_INPUTS)) if ($(k)) $(k).value = v; populateWindow(DEFAULT_INPUTS.ticker); render(); });
   const mq = window.matchMedia("(prefers-color-scheme: dark)");
@@ -895,6 +919,19 @@ wire();
     entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+})();
+
+/* Hide the "scroll down" cue once the user scrolls (or after a while). */
+(function () {
+  const cue = document.getElementById("scrollcue");
+  if (!cue) return;
+  const hide = () => cue.classList.add("hidden");
+  const onScroll = () => {
+    const y = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (y > 40) { hide(); window.removeEventListener("scroll", onScroll); }
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  setTimeout(hide, 9000);
 })();
 </script>
 </body>

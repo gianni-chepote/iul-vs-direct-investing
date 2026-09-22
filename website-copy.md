@@ -47,8 +47,10 @@ Las siguientes cifras son ilustrativas, por defecto a lo largo de 20 años (240 
 |---|---|---|---|
 | 1 | Total aportado | tu dinero | {total aportado} · {n} aportaciones mensuales |
 | 2 | Valor final del ETF | Backtest histórico del ETF | {valor ETF} · {±diferencia} frente a lo aportado |
-| 3 | Ilustración IUL-A | Tasa fija publicitada · hipotética | {valor IUL-A} · Tasa publicitada: {tasa}% anual |
-| 4 | IUL-B vinculado al índice | Misma póliza, créditos reales del índice | {valor IUL-B} · {x} años en el tope · {y} en el piso |
+| 3 | IUL: lo que te prometen | Tasa fija publicitada · hipotética | {valor IUL-A} · Tasa publicitada: {tasa}% anual |
+| 4 | IUL: lo que daría de verdad | Misma póliza, créditos reales del índice | {valor IUL-B} · {x} años en el tope · {y} en el piso |
+
+**Línea "qué mirar" (bajo las tarjetas):** Fíjate en la brecha entre la línea del ETF y las del IUL: esa distancia es lo que el freno del seguro le cuesta a tu dinero.
 
 ## Sección: Compruébalo tú mismo — cómo crecen tus aportaciones con el tiempo
 
@@ -63,11 +65,11 @@ Las siguientes cifras son ilustrativas, por defecto a lo largo de 20 años (240 
     - Pista VOO: Solo historial de VOO — sin relleno anterior a 2010.
   - Periodo (mes inicial / mes final)
     - Pista: Comprando al cierre de cada fin de mes. Último cierre verificado: {fecha}.
-- **IUL-A · publicitado**
-  - Tasa acreditada (anual efectiva) — pista: Hipotética; origen no verificado.
-  - Cargo mensual equivalente (USD) — pista: Aproximación ajustada, no cargos verificados de la póliza.
-  - Aportación neta al valor en efectivo / mes: {importe} / mes
-- **IUL-B · créditos indexados**
+- **IUL: lo que te prometen (fijo, no editable)**
+  - Tasa acreditada (anual efectiva): 8% anual · fijo — pista: Hipotética; origen no verificado. No editable.
+  - Cargo mensual equivalente (USD): $49.26 / mes · fijo — pista: Aproximación ajustada, no cargos verificados de la póliza.
+  - Aportación neta al valor en efectivo / mes: {importe} / mes — pista: Lo que de verdad entra a tu cuenta cada mes, después de aplicar el coste del seguro y los demás cargos.
+- **IUL: lo realista** → **Opciones avanzadas** (desplegable)
   - Tope / Piso / Participación / Diferencial
   - Pista: Punto a punto anual sobre el índice de precios del S&P 500 (sin dividendos).
 
@@ -75,13 +77,13 @@ Las siguientes cifras son ilustrativas, por defecto a lo largo de 20 años (240 
 
 - **Nota:** El backtest del ETF y ambas líneas del IUL en dólares, sobre las aportaciones acumuladas. Pasa el cursor para ver el valor de cada uno en cualquier mes. El IUL-B aplica la regla real de la póliza: en los años en que el índice cae, acredita 0% (el piso) —no pierde por el índice, pero los cargos siguen restando—, y en los años buenos el tope limita la ganancia.
 - **Encabezado:** Valor de la cuenta, fin de mes — ETF {valor} · publicitado {valor} · vinculado al índice {valor}
-- **Leyenda:** ETF (rentabilidad total) · IUL-A publicitado · IUL-B vinculado al índice · Aportaciones
+- **Leyenda:** ETF (rentabilidad total) · IUL prometido · IUL realista · Aportaciones
 
 ## Gráfico: Si mañana necesitas tu dinero, ¿cuánto puedes recuperar realmente?
 
 - **Nota:** Lo que podrías retirar hoy. El ETF se puede vender en el mercado; el valor de la cuenta del IUL se reduce por cualquier cargo de rescate — y el rescate termina la cobertura.
-- **Barras:** ETF (vender en el mercado) · Valor de la cuenta del IUL · Rescate del IUL (ilustrativo, 35%)
-- **Nota inferior:** El valor de rescate mostrado es un ejemplo ilustrativo: **el 35% del valor de la cuenta**, es decir, un cargo de rescate del 65%. El calendario real está totalmente especificado en tu contrato y, sobre todo en los primeros años, puede quedarse con más de la mitad de tu dinero. Rescatar también termina la cobertura de {beneficio}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.
+- **Barras:** ETF (vender en el mercado) · Valor de la cuenta del IUL · Rescate del IUL (supuesto, 45%)
+- **Nota inferior:** **Supuesto:** el valor de rescate mostrado es una suposición — **el 45% del valor de la cuenta**, es decir, un cargo de rescate del 55%. El calendario real está totalmente especificado en tu contrato y, sobre todo en los primeros años, puede quedarse con más de la mitad de tu dinero. Rescatar también termina la cobertura de {beneficio}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.
 
 
 ## Gráfico: Cómo se sintió la montaña rusa del ETF
