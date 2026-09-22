@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>$300 a Month</title>
-<meta name="description" content="What $300 a month would have become in an S&P 500 ETF, next to an indexed universal life illustration." />
+<title>$300 al Mes</title>
+<meta name="description" content="En qué se habrían convertido $300 al mes en un ETF del S&P 500, frente a una ilustración de seguro de vida universal indexado." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -161,60 +161,60 @@
 <body>
 <div class="wrap">
   <header>
-    <p class="eyebrow">Historical backtest · hypothetical illustration</p>
-    <h1 class="headline">Where would your $300 a month have taken you?</h1>
+    <p class="eyebrow">Backtest histórico · ilustración hipotética</p>
+    <h1 class="headline">¿Hasta dónde te habrían llevado tus $300 al mes?</h1>
     <p class="answer" id="answer"></p>
   </header>
 
   <div class="def-grid">
     <div class="def iul">
-      <span class="tag">Indexed universal life</span>
-      <h3>Insurance with a market-linked savings account</h3>
-      <p>Indexed universal life (IUL) is permanent life insurance with a cash-value account attached. Each premium first pays the cost of insurance and policy charges; what remains is credited with interest tied to a stock index such as the S&amp;P 500.</p>
-      <p>The credit is capped and floored. A cap — often near 8% — limits gains in strong years, a 0% floor keeps an index fall from cutting the credit, and dividends are excluded. The policy pays a death benefit for as long as it stays funded.</p>
+      <span class="tag">Seguro de vida universal indexado</span>
+      <h3>Un seguro con una cuenta de ahorro ligada al mercado</h3>
+      <p>El seguro de vida universal indexado (IUL) es un seguro de vida permanente con una cuenta de valor en efectivo. Cada prima paga primero el coste del seguro y los cargos de la póliza; lo que queda se acredita con un interés ligado a un índice bursátil como el S&amp;P 500.</p>
+      <p>El crédito tiene tope y piso. Un tope —a menudo cercano al 8%— limita las ganancias en los años buenos, un piso del 0% evita que una caída del índice recorte el crédito, y los dividendos quedan excluidos. La póliza paga un beneficio por fallecimiento mientras siga financiada.</p>
     </div>
     <div class="def etf">
-      <span class="tag">Direct index investing</span>
-      <h3>You own the fund, and the whole market with it</h3>
-      <p>Investing directly means buying a low-cost index ETF such as SPY or VOO that holds the S&amp;P 500. You own the fund outright, receive its dividends (reinvested here), and its value moves with the market.</p>
-      <p>There are no insurance charges and no cap on gains — but no floor either, so a market fall hits your balance in full. You can sell on any trading day, and dividends and gains are taxable. On its own it provides no life insurance.</p>
+      <span class="tag">Inversión directa en un índice</span>
+      <h3>Eres dueño del fondo, y con él de todo el mercado</h3>
+      <p>Invertir directamente significa comprar un ETF de bajo coste como SPY o VOO que replica el S&amp;P 500. Eres dueño del fondo, recibes sus dividendos (aquí reinvertidos) y su valor se mueve con el mercado.</p>
+      <p>No hay cargos de seguro ni tope a las ganancias, pero tampoco hay piso: una caída del mercado golpea tu saldo por completo. Puedes vender cualquier día de mercado, y los dividendos y las ganancias tributan. Por sí solo no ofrece ningún seguro de vida.</p>
     </div>
   </div>
 
   <div class="tiles">
-    <div class="tile"><span class="label">Total paid in</span><span class="kind">your money</span><span class="value mono" id="v-contrib">—</span><span class="sub" id="s-contrib"></span></div>
-    <div class="tile" data-series="etf"><span class="label">ETF ending value</span><span class="kind">Historical ETF backtest</span><span class="value mono etf" id="v-etf">—</span><span class="sub" id="s-etf"></span></div>
-    <div class="tile" data-series="iula"><span class="label">IUL-A illustration</span><span class="kind">Advertised flat rate · hypothetical</span><span class="value mono iula" id="v-iula">—</span><span class="sub" id="s-iula"></span></div>
-    <div class="tile" data-series="iulb"><span class="label">IUL-B index-linked</span><span class="kind">Same policy, real index credits</span><span class="value mono iulb" id="v-iulb">—</span><span class="sub" id="s-iulb"></span></div>
+    <div class="tile"><span class="label">Total aportado</span><span class="kind">tu dinero</span><span class="value mono" id="v-contrib">—</span><span class="sub" id="s-contrib"></span></div>
+    <div class="tile" data-series="etf"><span class="label">Valor final del ETF</span><span class="kind">Backtest histórico del ETF</span><span class="value mono etf" id="v-etf">—</span><span class="sub" id="s-etf"></span></div>
+    <div class="tile" data-series="iula"><span class="label">Ilustración IUL-A</span><span class="kind">Tasa fija publicitada · hipotética</span><span class="value mono iula" id="v-iula">—</span><span class="sub" id="s-iula"></span></div>
+    <div class="tile" data-series="iulb"><span class="label">IUL-B vinculado al índice</span><span class="kind">Misma póliza, créditos reales del índice</span><span class="value mono iulb" id="v-iulb">—</span><span class="sub" id="s-iulb"></span></div>
   </div>
 
   <section>
-    <h2 class="sec-title">Set the scenario</h2>
-    <p class="sec-note">Every figure updates from the cached price history — no assumed returns on the ETF side. The IUL monthly charge is fitted once to the reported $142,672 illustration and then held fixed; changing the budget or window does not refit it.</p>
+    <h2 class="sec-title">Configura el escenario</h2>
+    <p class="sec-note">Cada cifra se actualiza desde el historial de precios en caché — sin rentabilidades supuestas en el lado del ETF. El cargo mensual del IUL se ajusta una sola vez a la ilustración reportada de $142,672 y luego se mantiene fijo; cambiar el presupuesto o el periodo no lo reajusta.</p>
     <div class="panel">
-      <div class="panel-head"><h3>Controls</h3><button id="reset" type="button">Reset to defaults</button></div>
+      <div class="panel-head"><h3>Controles</h3><button id="reset" type="button">Restablecer valores</button></div>
       <div class="groups">
         <div class="group">
-          <h4>Contributions</h4>
-          <div class="field"><label for="budget">Monthly budget (USD)</label><input class="mono" id="budget" type="number" min="0" step="10" value="300" /></div>
-          <div class="field"><label for="ticker">ETF history</label>
-            <select id="ticker"><option value="SPY">SPY — historical S&amp;P 500 ETF proxy (from 1993)</option><option value="VOO">VOO — actual history (from Sept 2010)</option></select>
+          <h4>Aportaciones</h4>
+          <div class="field"><label for="budget">Presupuesto mensual (USD)</label><input class="mono" id="budget" type="number" min="0" step="10" value="300" /></div>
+          <div class="field"><label for="ticker">Historial del ETF</label>
+            <select id="ticker"><option value="SPY">SPY — proxy histórico del ETF del S&amp;P 500 (desde 1993)</option><option value="VOO">VOO — historial real (desde sept. 2010)</option></select>
             <p class="hint" id="ticker-hint"></p></div>
-          <div class="field"><label for="win-start">Window</label>
-            <div class="inline-2"><select id="win-start" aria-label="First contribution month"></select><select id="win-end" aria-label="Last contribution month"></select></div>
+          <div class="field"><label for="win-start">Periodo</label>
+            <div class="inline-2"><select id="win-start" aria-label="Primer mes de aportación"></select><select id="win-end" aria-label="Último mes de aportación"></select></div>
             <p class="hint" id="win-hint"></p></div>
         </div>
         <div class="group">
-          <h4>IUL-A · advertised</h4>
-          <div class="field"><label for="rate">Credited rate (effective annual)</label><input class="mono" id="rate" type="number" min="0" max="20" step="0.25" value="8" /><p class="hint">Hypothetical; origin unverified.</p></div>
-          <div class="field"><label for="charge">Equivalent monthly charge (USD)</label><input class="mono" id="charge" type="number" min="0" step="0.01" value="49.26" /><p class="hint">Fitted approximation, not verified policy fees.</p></div>
-          <div class="field"><label>Net cash-value contribution / month</label><div class="readout" id="net-readout">—</div></div>
+          <h4>IUL-A · publicitado</h4>
+          <div class="field"><label for="rate">Tasa acreditada (anual efectiva)</label><input class="mono" id="rate" type="number" min="0" max="20" step="0.25" value="8" /><p class="hint">Hipotética; origen no verificado.</p></div>
+          <div class="field"><label for="charge">Cargo mensual equivalente (USD)</label><input class="mono" id="charge" type="number" min="0" step="0.01" value="49.26" /><p class="hint">Aproximación ajustada, no cargos verificados de la póliza.</p></div>
+          <div class="field"><label>Aportación neta al valor en efectivo / mes</label><div class="readout" id="net-readout">—</div></div>
         </div>
         <div class="group">
-          <h4>IUL-B · index credits</h4>
-          <div class="field"><div class="inline-2"><div><label for="cap">Cap</label><input class="mono" id="cap" type="number" min="0" max="50" step="0.5" value="8" /></div><div><label for="floor">Floor</label><input class="mono" id="floor" type="number" min="0" max="20" step="0.5" value="0" /></div></div></div>
-          <div class="field"><div class="inline-2"><div><label for="participation">Participation</label><input class="mono" id="participation" type="number" min="0" max="200" step="5" value="100" /></div><div><label for="spread">Spread</label><input class="mono" id="spread" type="number" min="0" max="20" step="0.25" value="0" /></div></div>
-            <p class="hint">Annual point-to-point on the S&amp;P 500 price index (no dividends).</p></div>
+          <h4>IUL-B · créditos indexados</h4>
+          <div class="field"><div class="inline-2"><div><label for="cap">Tope</label><input class="mono" id="cap" type="number" min="0" max="50" step="0.5" value="8" /></div><div><label for="floor">Piso</label><input class="mono" id="floor" type="number" min="0" max="20" step="0.5" value="0" /></div></div></div>
+          <div class="field"><div class="inline-2"><div><label for="participation">Participación</label><input class="mono" id="participation" type="number" min="0" max="200" step="5" value="100" /></div><div><label for="spread">Diferencial</label><input class="mono" id="spread" type="number" min="0" max="20" step="0.25" value="0" /></div></div>
+            <p class="hint">Punto a punto anual sobre el índice de precios del S&amp;P 500 (sin dividendos).</p></div>
         </div>
       </div>
     </div>
@@ -222,49 +222,49 @@
   </section>
 
   <section>
-    <h2 class="sec-title">Growth over time</h2>
-    <p class="sec-note">The ETF backtest and both IUL lines on one dollar axis, over cumulative contributions. Hover for the value of each on any month.</p>
+    <h2 class="sec-title">Crecimiento en el tiempo</h2>
+    <p class="sec-note">El backtest del ETF y ambas líneas del IUL en un mismo eje de dólares, sobre las aportaciones acumuladas. Pasa el cursor para ver el valor de cada uno en cualquier mes.</p>
     <div class="chart-card">
-      <div class="chart-head"><span class="k">Account value, month-end</span><span class="k" id="growth-sum"></span></div>
+      <div class="chart-head"><span class="k">Valor de la cuenta, fin de mes</span><span class="k" id="growth-sum"></span></div>
       <div id="chart-growth"></div>
       <div class="legend">
-        <span><i class="swatch" style="border-top-color:var(--etf)"></i> ETF total return</span>
-        <span><i class="swatch" style="border-top-color:var(--iula);border-top-style:dashed"></i> IUL-A advertised</span>
-        <span><i class="swatch" style="border-top-color:var(--iulb);border-top-style:dashed"></i> IUL-B index-linked</span>
-        <span><i class="swatch" style="border-top-color:var(--contrib)"></i> Contributions</span>
+        <span><i class="swatch" style="border-top-color:var(--etf)"></i> ETF (rentabilidad total)</span>
+        <span><i class="swatch" style="border-top-color:var(--iula);border-top-style:dashed"></i> IUL-A publicitado</span>
+        <span><i class="swatch" style="border-top-color:var(--iulb);border-top-style:dashed"></i> IUL-B vinculado al índice</span>
+        <span><i class="swatch" style="border-top-color:var(--contrib)"></i> Aportaciones</span>
       </div>
     </div>
   </section>
 
   <section>
-    <h2 class="sec-title">What the ETF ride felt like</h2>
-    <p class="sec-note">Drawdown is how far the ETF sat below its own prior peak, using the contribution-free return series so deposits cannot hide the losses. A smooth IUL line is not evidence of zero policy risk.</p>
+    <h2 class="sec-title">Cómo se sintió la montaña rusa del ETF</h2>
+    <p class="sec-note">La caída desde máximos mide cuánto estuvo el ETF por debajo de su máximo previo, usando la serie de rentabilidad sin aportaciones para que los depósitos no oculten las pérdidas. Una línea suave del IUL no prueba que la póliza carezca de riesgo.</p>
     <div class="chart-card">
-      <div class="chart-head"><span class="k">Decline from prior peak</span><span class="k" id="dd-sum"></span></div>
+      <div class="chart-head"><span class="k">Caída desde el máximo previo</span><span class="k" id="dd-sum"></span></div>
       <div id="chart-dd"></div>
     </div>
   </section>
 
   <section>
-    <h2 class="sec-title">Where the money goes, and how it ends</h2>
-    <p class="sec-note">Each premium splits into an insurance charge and a cash-value contribution. The charge buys coverage — the ending-value gap between ETF and IUL is not all fees; capped credits, excluded dividends and forgone compounding differ too.</p>
+    <h2 class="sec-title">A dónde va el dinero, y cómo termina</h2>
+    <p class="sec-note">Cada prima se divide en un cargo de seguro y una aportación al valor en efectivo. El cargo compra la cobertura — la diferencia final entre el ETF y el IUL no es toda comisiones; los créditos con tope, los dividendos excluidos y la capitalización perdida también influyen.</p>
     <div class="chart-grid">
       <div class="chart-card">
-        <div class="chart-head"><span class="k">Every <b id="mg-budget"></b> monthly premium</span></div>
+        <div class="chart-head"><span class="k">Cada prima mensual de <b id="mg-budget"></b></span></div>
         <div id="chart-split"></div>
-        <div class="legend"><span><i class="swatch" style="border-top-color:var(--warn)"></i> Insurance charge</span><span><i class="swatch" style="border-top-color:var(--iulb)"></i> To cash value</span></div>
+        <div class="legend"><span><i class="swatch" style="border-top-color:var(--warn)"></i> Cargo de seguro</span><span><i class="swatch" style="border-top-color:var(--iulb)"></i> Al valor en efectivo</span></div>
       </div>
       <div class="chart-card">
-        <div class="chart-head"><span class="k">Ending value, by source</span></div>
+        <div class="chart-head"><span class="k">Valor final, por origen</span></div>
         <div id="chart-ending"></div>
-        <div class="legend"><span><i class="swatch" style="border-top-color:var(--contrib)"></i> Net contributions</span><span><i class="swatch" style="border-top-color:var(--etf)"></i> Growth</span></div>
+        <div class="legend"><span><i class="swatch" style="border-top-color:var(--contrib)"></i> Aportaciones netas</span><span><i class="swatch" style="border-top-color:var(--etf)"></i> Crecimiento</span></div>
       </div>
     </div>
   </section>
 
   <section>
-    <h2 class="sec-title">Money available on exit</h2>
-    <p class="sec-note">What you could take out today, before personal taxes. The ETF can be sold at market; the IUL account value is reduced by any surrender charge — and surrender ends the coverage.</p>
+    <h2 class="sec-title">Dinero disponible al salir</h2>
+    <p class="sec-note">Lo que podrías retirar hoy, antes de impuestos personales. El ETF se puede vender en el mercado; el valor de la cuenta del IUL se reduce por cualquier cargo de rescate — y el rescate termina la cobertura.</p>
     <div class="chart-card">
       <div id="chart-exit"></div>
       <p class="exit-note" id="exit-note"></p>
@@ -272,41 +272,41 @@
   </section>
 
   <section>
-    <h2 class="sec-title">How an index credit is formed</h2>
-    <p class="sec-note">This is the exact rule behind the IUL-B line, drawn from your live cap, floor, participation and spread. The dots are the 20 real annual S&amp;P 500 price returns in the window, mapped to the credit each one earned.</p>
+    <h2 class="sec-title">Cómo se forma un crédito indexado</h2>
+    <p class="sec-note">Esta es la regla exacta detrás de la línea IUL-B, dibujada desde tu tope, piso, participación y diferencial en vivo. Los puntos son las 20 rentabilidades anuales reales del precio del S&amp;P 500 en el periodo, asignadas al crédito que ganó cada una.</p>
     <div class="chart-card">
       <div class="chart-head"><span class="k" id="credit-rule"></span></div>
       <div id="chart-credit"></div>
-      <div class="legend"><span><i class="swatch" style="border-top-color:var(--iulb)"></i> Credited rate</span><span><i class="dot" style="background:var(--faint)"></i> Actual policy years</span></div>
+      <div class="legend"><span><i class="swatch" style="border-top-color:var(--iulb)"></i> Tasa acreditada</span><span><i class="dot" style="background:var(--faint)"></i> Años reales de la póliza</span></div>
     </div>
   </section>
 
   <section>
-    <h2 class="sec-title">How they really differ</h2>
-    <p class="sec-note">Neither product is simply better — the right choice turns on whether you need lasting life insurance, and how you weigh caps, fees, liquidity and taxes. The ETF figures on this page are before personal taxes, so the IUL's tax treatment is a real advantage the charts do not show.</p>
+    <h2 class="sec-title">En qué se diferencian de verdad</h2>
+    <p class="sec-note">Ninguno es simplemente mejor — la elección depende de si necesitas un seguro de vida duradero y de cómo valoras topes, comisiones, liquidez e impuestos. Las cifras del ETF en esta página son antes de impuestos personales, así que el tratamiento fiscal del IUL es una ventaja real que los gráficos no muestran.</p>
     <div class="cmp-wrap">
       <table class="cmp">
         <thead>
-          <tr><th></th><th class="c-iul">Indexed universal life</th><th class="c-etf">Direct ETF investing</th></tr>
+          <tr><th></th><th class="c-iul">Seguro de vida universal indexado</th><th class="c-etf">Inversión directa en ETF</th></tr>
         </thead>
         <tbody>
-          <tr><td>Growth engine</td><td>Index credit, capped and floored; dividends excluded</td><td>Full market total return, dividends included, no cap</td></tr>
-          <tr><td>Down years</td><td>0% floor protects the credited interest — but charges still apply</td><td>You take the full market loss; no floor</td></tr>
-          <tr><td>Costs</td><td>Cost of insurance plus policy charges, which rise with age</td><td>Fund expense ratio (~0.03–0.09%) and trading costs</td></tr>
-          <tr><td>Access to cash</td><td>Surrender charges for years; policy loans reduce the benefit</td><td>Sell on any market day, then settlement and taxes</td></tr>
-          <tr><td>Life insurance</td><td>Death benefit while funded (here $214,000)</td><td>None — pair with term insurance if you need cover</td></tr>
-          <tr><td>Taxes</td><td>Tax-deferred growth; death benefit generally income-tax-free; loans can be tax-free</td><td>Dividends and realized gains are taxable</td></tr>
-          <tr><td>Best suited to</td><td>A lasting insurance need plus tax-sheltered saving, accepting caps and fees</td><td>Long-horizon growth when cost, liquidity and simplicity matter most</td></tr>
+          <tr><td>Motor de crecimiento</td><td>Crédito indexado, con tope y piso; dividendos excluidos</td><td>Rentabilidad total del mercado, con dividendos, sin tope</td></tr>
+          <tr><td>Años a la baja</td><td>El piso del 0% protege el interés acreditado — pero los cargos siguen aplicándose</td><td>Asumes toda la pérdida del mercado; sin piso</td></tr>
+          <tr><td>Costes</td><td>Coste del seguro más cargos de la póliza, que suben con la edad</td><td>Ratio de gastos del fondo (~0.03–0.09%) y costes de operación</td></tr>
+          <tr><td>Acceso al efectivo</td><td>Cargos de rescate durante años; los préstamos reducen el beneficio</td><td>Vender cualquier día de mercado, luego liquidación e impuestos</td></tr>
+          <tr><td>Seguro de vida</td><td>Beneficio por fallecimiento mientras esté financiado (aquí $214,000)</td><td>Ninguno — combínalo con un seguro temporal si lo necesitas</td></tr>
+          <tr><td>Impuestos</td><td>Crecimiento con impuestos diferidos; el beneficio por fallecimiento suele estar exento; los préstamos pueden ser libres de impuestos</td><td>Los dividendos y las ganancias realizadas tributan</td></tr>
+          <tr><td>Más adecuado para</td><td>Una necesidad duradera de seguro más ahorro con ventaja fiscal, aceptando topes y comisiones</td><td>Crecimiento a largo plazo cuando el coste, la liquidez y la simplicidad son lo más importante</td></tr>
         </tbody>
       </table>
     </div>
     <div class="caveats">
-      <div class="caveat"><span>IUL is permanent insurance. A 20-year premium plan does not guarantee a paid-up policy — rising charges can demand more funding later.</span></div>
-      <div class="caveat"><span>A 0% floor does not stop cash-value losses from <b>charges</b>. Stop paying premiums and the charges continue; the policy can lapse.</span></div>
-      <div class="caveat"><span>Surrender charges can leave proceeds below the premiums you paid, and surrendering ends the coverage.</span></div>
-      <div class="caveat"><span>Under level coverage, beneficiaries receive the death benefit, not the death benefit <b>plus</b> the cash value.</span></div>
-      <div class="caveat"><span>An ETF provides no life insurance. "Buy term and invest the difference" pairs cheap temporary cover with market growth.</span></div>
-      <div class="caveat"><span>This page compares realized past ETF returns with a modeled IUL illustration. Past results do not predict future returns.</span></div>
+      <div class="caveat"><span>El IUL es un seguro permanente. Un plan de primas a 20 años no garantiza una póliza pagada por completo — los cargos crecientes pueden exigir más financiación más adelante.</span></div>
+      <div class="caveat"><span>Un piso del 0% no evita pérdidas del valor en efectivo por <b>cargos</b>. Si dejas de pagar las primas, los cargos continúan; la póliza puede caducar.</span></div>
+      <div class="caveat"><span>Los cargos de rescate pueden dejar lo recibido por debajo de las primas pagadas, y rescatar termina la cobertura.</span></div>
+      <div class="caveat"><span>Con cobertura nivelada, los beneficiarios reciben el beneficio por fallecimiento, no el beneficio <b>más</b> el valor en efectivo.</span></div>
+      <div class="caveat"><span>Un ETF no ofrece ningún seguro de vida. "Compra un seguro temporal e invierte la diferencia" combina cobertura temporal barata con el crecimiento del mercado.</span></div>
+      <div class="caveat"><span>Esta página compara rentabilidades pasadas reales del ETF con una ilustración modelada del IUL. Los resultados pasados no predicen los futuros.</span></div>
     </div>
   </section>
 
@@ -623,8 +623,8 @@ const usd0 = (x) => x.toLocaleString("en-US", { style: "currency", currency: "US
 const usd2 = (x) => x.toLocaleString("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct = (x, d = 1) => (x * 100).toFixed(d) + "%";
 const kfmt = (x) => (Math.abs(x) >= 1000 ? "$" + Math.round(x / 1000) + "k" : usd0(x));
-const longDate = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-const monShort = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { year: "numeric", month: "short" });
+const longDate = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" });
+const monShort = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("es-ES", { year: "numeric", month: "short" });
 const $ = (id) => document.getElementById(id);
 const cvar = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const svgNS = "http://www.w3.org/2000/svg";
@@ -687,29 +687,24 @@ function lineChart(container, dates, series, valFmt) {
   const X = (i) => VB.l + (n <= 1 ? 0 : (i / (n - 1)) * iw);
   const Y = (v) => VB.t + (1 - v / yMax) * ih;
 
-  // y grid + labels
   const ticks = 4;
   for (let g = 0; g <= ticks; g++) {
     const v = (yMax / ticks) * g, y = Y(v);
     svg.appendChild(el("line", { x1: VB.l, y1: y, x2: VB.l + iw, y2: y, stroke: grid, "stroke-width": 1 }));
     svg.appendChild(el("text", { x: VB.l - 8, y: y + 3.5, "text-anchor": "end", "font-size": 11, fill: muted }, kfmt(v)));
   }
-  // x year labels
   let lastYr = "";
   dates.forEach((d, i) => { const yr = d.slice(0, 4); if (yr !== lastYr && (+yr) % 3 === 0) { lastYr = yr; svg.appendChild(el("text", { x: X(i), y: VB.h - 8, "text-anchor": "middle", "font-size": 11, fill: muted }, yr)); } });
 
-  // series paths
   series.forEach((s) => {
     let d = "";
     s.values.forEach((v, i) => { d += (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1) + " "; });
     svg.appendChild(el("path", { d, fill: "none", stroke: s.color, "stroke-width": s.width || 2, "stroke-dasharray": s.dash || "none", "vector-effect": "non-scaling-stroke", "stroke-linejoin": "round" }));
   });
-  // direct end labels, de-overlapped
   const labels = series.map((s) => ({ nm: s.short, color: s.color, y: Y(s.values[n - 1]), v: s.values[n - 1] })).sort((a, b) => a.y - b.y);
   for (let i = 1; i < labels.length; i++) if (labels[i].y - labels[i - 1].y < 13) labels[i].y = labels[i - 1].y + 13;
   labels.forEach((L) => svg.appendChild(el("text", { x: VB.l + iw + 6, y: L.y + 3.5, "font-size": 11, "font-weight": 500, fill: L.color }, L.nm)));
 
-  // hover
   const tip = ensureTip(container);
   const cross = el("line", { y1: VB.t, y2: VB.t + ih, stroke: cvar("--line-strong"), "stroke-width": 1, opacity: 0 });
   svg.appendChild(cross);
@@ -742,7 +737,7 @@ function areaChart(container, dates, values) {
   let min = 0; values.forEach((v) => { if (v < min) min = v; });
   const yMin = min * 1.08 || -0.1;
   const X = (i) => VB.l + (i / (n - 1)) * iw;
-  const Y = (v) => VB.t + (v / yMin) * ih; // v=0 -> top, v=yMin -> bottom
+  const Y = (v) => VB.t + (v / yMin) * ih;
   const ticks = 4;
   for (let g = 0; g <= ticks; g++) {
     const v = (yMin / ticks) * g, y = Y(v);
@@ -757,11 +752,9 @@ function areaChart(container, dates, values) {
   svg.appendChild(el("path", { d: dPath, fill: warn, "fill-opacity": 0.16, stroke: "none" }));
   let line = ""; values.forEach((v, i) => { line += (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1) + " "; });
   svg.appendChild(el("path", { d: line, fill: "none", stroke: warn, "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" }));
-  // worst marker
   let wi = 0; values.forEach((v, i) => { if (v < values[wi]) wi = i; });
   svg.appendChild(el("circle", { cx: X(wi), cy: Y(values[wi]), r: 3.5, fill: warn, stroke: cvar("--surface"), "stroke-width": 1.5 }));
   svg.appendChild(el("text", { x: Math.min(X(wi), VB.l + iw - 60), y: Y(values[wi]) + 16, "font-size": 11, "font-weight": 500, fill: warn }, `${Math.round(values[wi] * 100)}% · ${dates[wi].slice(0, 7)}`));
-  // hover
   const tip = ensureTip(container);
   const cross = el("line", { y1: VB.t, y2: VB.t + ih, stroke: cvar("--line-strong"), "stroke-width": 1, opacity: 0 }); svg.appendChild(cross);
   const dot = el("circle", { r: 3.5, fill: warn, stroke: cvar("--surface"), "stroke-width": 1.5, opacity: 0 }); svg.appendChild(dot);
@@ -772,7 +765,7 @@ function areaChart(container, dates, values) {
     const px = X(i); cross.setAttribute("x1", px); cross.setAttribute("x2", px); cross.setAttribute("opacity", 1);
     dot.setAttribute("cx", px); dot.setAttribute("cy", Y(values[i])); dot.setAttribute("opacity", 1);
     tip.style.opacity = 1;
-    tip.innerHTML = `<div class="d">${longDate(dates[i])}</div><div class="row"><span class="nm">Below peak</span><span class="v">${(values[i] * 100).toFixed(1)}%</span></div>`;
+    tip.innerHTML = `<div class="d">${longDate(dates[i])}</div><div class="row"><span class="nm">Bajo el máximo</span><span class="v">${(values[i] * 100).toFixed(1)}%</span></div>`;
     const left = (px / VB.w) * r.width;
     tip.style.left = Math.min(r.width - tip.offsetWidth - 6, Math.max(6, left + 12)) + "px"; tip.style.top = "18px";
   });
@@ -784,7 +777,6 @@ function stackRow(container, total, segs, fmt) {
   container.innerHTML = "";
   const svg = el("svg", { viewBox: "0 0 820 90", class: "chart-svg", preserveAspectRatio: "xMidYMid meet" });
   const L = 4, W = 812, barY = 30, barH = 30;
-  const X = (v) => L + (v / total) * W;
   let x = L;
   segs.forEach((s) => {
     const w = (s.value / total) * W;
@@ -824,12 +816,9 @@ function creditCurve(container, cfg, points) {
   const yMax = Math.max(cfg.cap, 0.10) * 1.15, yMin = Math.min(cfg.floor, 0) - 0.01;
   const X = (v) => VB.l + ((v - xMin) / (xMax - xMin)) * iw;
   const Y = (v) => VB.t + (1 - (v - yMin) / (yMax - yMin)) * ih;
-  // grid
   for (let g = 0; g <= 4; g++) { const v = yMin + ((yMax - yMin) / 4) * g, y = Y(v); svg.appendChild(el("line", { x1: VB.l, y1: y, x2: VB.l + iw, y2: y, stroke: grid, "stroke-width": 1 })); svg.appendChild(el("text", { x: VB.l - 8, y: y + 3.5, "text-anchor": "end", "font-size": 11, fill: muted }, Math.round(v * 100) + "%")); }
   [-0.3, -0.15, 0, 0.15, 0.3].forEach((v) => { svg.appendChild(el("text", { x: X(v), y: VB.h - 8, "text-anchor": "middle", "font-size": 11, fill: muted }, Math.round(v * 100) + "%")); });
-  // zero vertical
   svg.appendChild(el("line", { x1: X(0), y1: VB.t, x2: X(0), y2: VB.t + ih, stroke: cvar("--line-strong"), "stroke-width": 1, "stroke-dasharray": "3 3" }));
-  // curve
   let d = "";
   for (let k = 0; k <= 120; k++) {
     const r = xMin + ((xMax - xMin) * k) / 120;
@@ -837,7 +826,6 @@ function creditCurve(container, cfg, points) {
     d += (k ? "L" : "M") + X(r).toFixed(1) + " " + Y(credit).toFixed(1) + " ";
   }
   svg.appendChild(el("path", { d, fill: "none", stroke: iulb, "stroke-width": 2.5, "vector-effect": "non-scaling-stroke", "stroke-linejoin": "round" }));
-  // actual policy-year dots
   points.forEach((p) => {
     const rx = Math.max(xMin, Math.min(xMax, p.indexReturn));
     svg.appendChild(el("circle", { cx: X(rx), cy: Y(p.creditRate), r: 3.2, fill: faint, "fill-opacity": 0.85, stroke: cvar("--surface"), "stroke-width": 1 }));
@@ -847,7 +835,7 @@ function creditCurve(container, cfg, points) {
 /* ---------- main render ---------- */
 function render() {
   const inp = readInputs();
-  if (inp.start > inp.end) { showError(["The first month must be on or before the last month."]); return; }
+  if (inp.start > inp.end) { showError(["El primer mes debe ser igual o anterior al último mes."]); return; }
   const cfg = toConfig(inp);
   const errs = validateInputs(cfg);
   if (errs.length) { showError(errs); return; }
@@ -856,61 +844,60 @@ function render() {
   const s = computeScenario(w, cfg);
   const valuationDate = PRICES.meta.last_completed_month_end;
 
-  $("net-readout").textContent = usd2(inp.budget - inp.charge) + " / mo";
+  $("net-readout").textContent = usd2(inp.budget - inp.charge) + " / mes";
 
   $("v-contrib").textContent = usd0(s.contributed);
-  $("s-contrib").textContent = `${w.periods} monthly deposits`;
+  $("s-contrib").textContent = `${w.periods} aportaciones mensuales`;
   $("v-etf").textContent = usd0(s.etf.finalValue);
-  $("s-etf").textContent = `${s.etf.finalValue >= s.contributed ? "+" : ""}${usd0(s.etf.finalValue - s.contributed)} vs. paid in`;
+  $("s-etf").textContent = `${s.etf.finalValue >= s.contributed ? "+" : ""}${usd0(s.etf.finalValue - s.contributed)} frente a lo aportado`;
   $("v-iula").textContent = usd0(s.iulA.finalValue);
-  $("s-iula").textContent = `${pct(s.returnOnPremium, 2)} return on premiums`;
+  $("s-iula").textContent = `${pct(s.returnOnPremium, 2)} de rentabilidad sobre las primas`;
   $("v-iulb").textContent = usd0(s.iulB.finalValue);
   const capped = s.iulB.credits.filter((c) => Math.abs(c.creditRate - cfg.cap) < 1e-9).length;
   const floored = s.iulB.credits.filter((c) => Math.abs(c.creditRate - cfg.floor) < 1e-9).length;
-  $("s-iulb").textContent = `${capped} yr at cap · ${floored} yr at floor`;
+  $("s-iulb").textContent = `${capped} años en el tope · ${floored} en el piso`;
 
   $("answer").innerHTML =
-    `Had you invested <b>${usd0(inp.budget)}</b> each month in <b>${inp.ticker}</b> from <b>${longDate(w.firstDate)}</b> to <b>${longDate(w.lastDate)}</b>, your <b>${usd0(s.contributed)}</b> would have been worth approximately <b>${usd0(s.etf.finalValue)}</b> as of ${longDate(valuationDate)}, with dividends reinvested, before personal taxes and trading costs. The advertised IUL illustration shows <b>${usd0(s.iulA.finalValue)}</b>; the same policy credited on the real S&P 500 price index reaches <b>${usd0(s.iulB.finalValue)}</b>.`;
+    `Si hubieras invertido <b>${usd0(inp.budget)}</b> cada mes en <b>${inp.ticker}</b> desde el <b>${longDate(w.firstDate)}</b> hasta el <b>${longDate(w.lastDate)}</b>, tus <b>${usd0(s.contributed)}</b> valdrían aproximadamente <b>${usd0(s.etf.finalValue)}</b> al ${longDate(valuationDate)}, con dividendos reinvertidos, antes de impuestos personales y costes de operación. La ilustración publicitada del IUL muestra <b>${usd0(s.iulA.finalValue)}</b>; la misma póliza acreditada sobre el índice real de precios del S&P 500 alcanza <b>${usd0(s.iulB.finalValue)}</b>.`;
 
-  $("ticker-hint").textContent = inp.ticker === "SPY" ? "SPY stands in for the index; VOO launched later." : "VOO history only — no pre-2010 backfill.";
-  $("win-hint").textContent = `Buying at each month-end close. Latest verified close: ${longDate(valuationDate)}.`;
+  $("ticker-hint").textContent = inp.ticker === "SPY" ? "SPY hace de sustituto del índice; VOO se lanzó después." : "Solo historial de VOO — sin relleno anterior a 2010.";
+  $("win-hint").textContent = `Comprando al cierre de cada fin de mes. Último cierre verificado: ${longDate(valuationDate)}.`;
 
-  /* charts */
   const contribSeries = Array.from({ length: w.periods }, (_, i) => inp.budget * (i + 1));
   lineChart($("chart-growth"), w.dates, [
     { short: "ETF", color: cvar("--etf"), values: s.etf.series, width: 2.4 },
     { short: "IUL-A", color: cvar("--iula"), dash: "6 4", values: s.iulA.series },
     { short: "IUL-B", color: cvar("--iulb"), dash: "2 4", values: s.iulB.series },
-    { short: "Paid in", color: cvar("--contrib"), width: 1.5, values: contribSeries },
+    { short: "Aportado", color: cvar("--contrib"), width: 1.5, values: contribSeries },
   ], usd0);
-  $("growth-sum").innerHTML = `ETF <b>${usd0(s.etf.finalValue)}</b> · advertised <b>${usd0(s.iulA.finalValue)}</b> · index-linked <b>${usd0(s.iulB.finalValue)}</b>`;
+  $("growth-sum").innerHTML = `ETF <b>${usd0(s.etf.finalValue)}</b> · publicitado <b>${usd0(s.iulA.finalValue)}</b> · vinculado al índice <b>${usd0(s.iulB.finalValue)}</b>`;
 
   areaChart($("chart-dd"), w.etfDailyDates, s.drawdown.series);
-  $("dd-sum").innerHTML = `Worst: <b>${pct(s.drawdown.worst)}</b>`;
+  $("dd-sum").innerHTML = `Peor: <b>${pct(s.drawdown.worst)}</b>`;
 
   $("mg-budget").textContent = usd0(inp.budget);
   stackRow($("chart-split"), inp.budget, [
-    { name: "Insurance charge", value: inp.charge, color: cvar("--warn") },
-    { name: "To cash value", value: inp.budget - inp.charge, color: cvar("--iulb") },
+    { name: "Cargo de seguro", value: inp.charge, color: cvar("--warn") },
+    { name: "Al valor en efectivo", value: inp.budget - inp.charge, color: cvar("--iulb") },
   ], usd2);
   stackRow($("chart-ending"), Math.max(s.etf.finalValue, s.iulA.finalValue), [
-    { name: "Net contributions", value: s.iulA.netContributed, color: cvar("--contrib") },
-    { name: "Growth", value: s.iulA.modeledGrowth, color: cvar("--etf") },
+    { name: "Aportaciones netas", value: s.iulA.netContributed, color: cvar("--contrib") },
+    { name: "Crecimiento", value: s.iulA.modeledGrowth, color: cvar("--etf") },
   ], usd0);
 
   compareBars($("chart-exit"), [
-    { label: "ETF\n(sell at market)", value: s.etf.finalValue, color: cvar("--etf") },
-    { label: "IUL account\nvalue", value: s.iulA.finalValue, color: cvar("--iula") },
-    { label: "IUL surrender\nvalue", value: s.iulA.finalValue, color: cvar("--iulb") },
+    { label: "ETF\n(vender en el mercado)", value: s.etf.finalValue, color: cvar("--etf") },
+    { label: "Valor de la cuenta\ndel IUL", value: s.iulA.finalValue, color: cvar("--iula") },
+    { label: "Valor de rescate\ndel IUL", value: s.iulA.finalValue, color: cvar("--iulb") },
   ]);
-  $("exit-note").innerHTML = `Surrender value shown equals the account value because no surrender-charge schedule has been supplied — <b>a real schedule would reduce it, especially in early years</b>. Surrendering also ends the ${usd0(cfg.deathBenefit || 214000)} coverage. ETF figures are before personal taxes, commissions and spreads.`;
+  $("exit-note").innerHTML = `El valor de rescate mostrado es igual al valor de la cuenta porque no se ha proporcionado un calendario de cargos de rescate — <b>un calendario real lo reduciría, sobre todo en los primeros años</b>. Rescatar también termina la cobertura de ${usd0(cfg.deathBenefit || 214000)}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.`;
 
-  $("credit-rule").innerHTML = `credit = max(<b>${inp.floor}%</b> floor, min(<b>${inp.cap}%</b> cap, <b>${inp.participation}%</b> × index return − <b>${inp.spread}%</b> spread))`;
+  $("credit-rule").innerHTML = `crédito = max(piso <b>${inp.floor}%</b>, min(tope <b>${inp.cap}%</b>, <b>${inp.participation}%</b> × rentabilidad del índice − diferencial <b>${inp.spread}%</b>))`;
   creditCurve($("chart-credit"), cfg, s.iulB.credits);
 
-  $("disclosure").textContent = "Historical ETF backtest and modeled IUL illustrations (advertised flat rate and index-linked reconstruction). Neither guarantees future outcomes.";
+  $("disclosure").textContent = "Backtest histórico del ETF e ilustraciones modeladas del IUL (tasa fija publicitada y reconstrucción vinculada al índice). Ninguna garantiza resultados futuros.";
   const prov = PRICES.meta;
-  $("footnote").textContent = `Prices: ${prov.provider}, retrieved ${new Date(prov.retrieved_utc).toISOString().slice(0, 10)}. ETF uses adjusted close (total return); IUL-B credits the S&P 500 price index (dividends excluded). Policy figures are user-reported and unverified. Iterative vs. direct ETF check agrees to ${usd2(Math.abs(s.etf.finalValue - s.etfDirectCheck))}.`;
+  $("footnote").textContent = `Precios: ${prov.provider}, obtenidos el ${new Date(prov.retrieved_utc).toISOString().slice(0, 10)}. El ETF usa el cierre ajustado (rentabilidad total); el IUL-B acredita el índice de precios del S&P 500 (dividendos excluidos). Las cifras de la póliza son reportadas por el usuario y no verificadas. La comprobación iterativa frente a la directa del ETF coincide en ${usd2(Math.abs(s.etf.finalValue - s.etfDirectCheck))}.`;
 }
 
 function wire() {
@@ -918,7 +905,6 @@ function wire() {
   ["budget", "rate", "charge", "cap", "floor", "participation", "spread", "win-start", "win-end"].forEach((id) => $(id).addEventListener("input", render));
   $("ticker").addEventListener("change", () => { const cur = { start: $("win-start").value, end: $("win-end").value }; populateWindow($("ticker").value, cur); render(); });
   $("reset").addEventListener("click", () => { for (const [k, v] of Object.entries(DEFAULT_INPUTS)) if ($(k)) $(k).value = v; populateWindow(DEFAULT_INPUTS.ticker); render(); });
-  // redraw on theme change so chart colors track tokens
   const mq = window.matchMedia("(prefers-color-scheme: dark)");
   mq.addEventListener && mq.addEventListener("change", render);
   new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
