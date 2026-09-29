@@ -1,6 +1,5 @@
 // Phase 3 verification harness. Runs before any UI is built.
-// Run: node "fins2026/IUL vs Direct Investing/scripts/verify.mjs"
-//   or, from the project dir: node scripts/verify.mjs
+// Run from the repo root: node scripts/verify.mjs
 
 import fs from "node:fs";
 import path from "node:path";

@@ -30,7 +30,7 @@ const [head, body] = filled.split("<!--__SPLIT__-->");
 if (body === undefined) throw new Error("Missing <!--__SPLIT__--> marker in template.");
 
 const out = `<!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />

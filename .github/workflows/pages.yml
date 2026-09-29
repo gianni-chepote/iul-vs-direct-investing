@@ -1,4 +1,4 @@
-name: Deploy page to GitHub Pages
+name: Verify and deploy
 
 on:
   push:
@@ -15,7 +15,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run the verification harness
+        run: node scripts/verify.mjs
+      - name: Check the built page matches its sources
+        run: |
+          node scripts/build_page.mjs
+          git diff --exit-code app/index.html
+
   deploy:
+    needs: verify
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

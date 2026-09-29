@@ -11,7 +11,7 @@ Convention: auto_adjust=False, then use "Adj Close" for the ETFs (total return,
 dividends reinvested and splits handled) and "Close" for ^GSPC (price index, no
 dividends). The default endpoint is the last completed calendar month.
 
-Run: ./.venv/bin/python "fins2026/IUL vs Direct Investing/scripts/snapshot_prices.py"
+Run from the repo root: pip install -r scripts/requirements.txt && python scripts/snapshot_prices.py
 """
 
 from __future__ import annotations

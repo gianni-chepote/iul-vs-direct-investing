@@ -13,7 +13,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 st.set_page_config(
-    page_title="¿Puede un IUL triplicar $72,000 en $214,000?",
+    page_title="IUL vs. inversión directa en un ETF del S&P 500",
     layout="wide",
     initial_sidebar_state="collapsed",
 )

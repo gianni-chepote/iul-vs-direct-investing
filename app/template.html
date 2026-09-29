@@ -1,9 +1,15 @@
-<title>¿Puede un IUL triplicar mi inversión de $72,000 a $214,000?</title>
-<meta name="description" content="Sí… pero solo si mueres. Si vives para contarlo, la historia es muy distinta." />
+<title>IUL vs. inversión directa en un ETF del S&amp;P 500</title>
+<meta name="description" content="Backtest con datos reales: $300 al mes en un ETF del S&amp;P 500 frente a un seguro de vida universal indexado (IUL), con la regla de tope y piso aplicada al índice real." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="IUL vs. inversión directa en un ETF del S&amp;P 500" />
+<meta property="og:description" content="$72,000 aportados en 20 años: cuánto habría acumulado un ETF del S&amp;P 500 frente a la ilustración de un IUL y un modelo con el índice real." />
+<meta property="og:url" content="https://gianni-chepote.github.io/iul-vs-direct-investing/" />
+<meta property="og:image" content="https://gianni-chepote.github.io/iul-vs-direct-investing/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
 
 <style>
   :root {
@@ -52,7 +58,7 @@
   }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: 20px; padding-block: 40px 72px; }
   .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
-  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 500; text-wrap: balance; margin: 0; }
+  h1, h2, h3 { font-family: "IBM Plex Sans", system-ui, sans-serif; font-weight: 600; letter-spacing: -0.015em; text-wrap: balance; margin: 0; }
 
   .eyebrow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 14px; }
   .headline { font-size: clamp(26px, 4.4vw, 44px); line-height: 1.12; letter-spacing: -0.01em; max-width: 20ch; }
@@ -60,7 +66,7 @@
   .answer { margin-top: 18px; font-size: clamp(15px, 1.6vw, 17px); color: var(--muted); max-width: 62ch; }
   .answer b { color: var(--ink); font-weight: 600; }
   .illus-note { margin-top: 28px; font-size: 12.5px; color: var(--faint); }
-  .pullquote { margin-top: 26px; padding-left: 16px; border-left: 3px solid var(--etf); font-family: "Fraunces", Georgia, serif; font-size: clamp(18px, 2.4vw, 24px); font-weight: 500; line-height: 1.32; letter-spacing: -0.01em; color: var(--ink); max-width: 30ch; text-wrap: balance; }
+  .pullquote { margin-top: 26px; padding-left: 16px; border-left: 3px solid var(--etf); font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: clamp(17px, 2.2vw, 21px); font-weight: 500; line-height: 1.32; letter-spacing: -0.01em; color: var(--ink); max-width: 30ch; text-wrap: balance; }
 
   .tiles { display: grid; gap: 12px; margin-top: 32px; grid-template-columns: repeat(4, 1fr); }
   .tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 6px; border-top: 3px solid var(--line-strong); }
@@ -159,7 +165,7 @@
   @media (max-width: 480px) { .tiles { grid-template-columns: 1fr; } }
 
   /* Scroll-reveal (Apple-style); only active when JS adds .anim, off for reduced motion */
-  .anim .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+  .anim .reveal { opacity: 0; transform: translateY(16px); transition: opacity .45s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.16,1,.3,1); }
   .anim .reveal.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .anim .reveal { opacity: 1 !important; transform: none !important; transition: none; } }
 
@@ -182,21 +188,21 @@
   @media (prefers-reduced-motion: reduce) { .anim .headline, .anim .subtitle, .anim .pullquote { animation: none; } }
 
   /* Dimmed "scroll down" cue */
-  .scrollcue { position: fixed; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); opacity: .62; transition: opacity .5s ease; pointer-events: none; z-index: 30; }
+  .scrollcue { position: fixed; right: 24px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); opacity: .62; transition: opacity .5s ease; pointer-events: none; z-index: 30; }
   .scrollcue.hidden { opacity: 0; }
   .scrollcue .chev { width: 11px; height: 11px; border-right: 2px solid var(--faint); border-bottom: 2px solid var(--faint); transform: rotate(45deg); }
-  @media (prefers-reduced-motion: no-preference) { .scrollcue { animation: cuebob 1.7s ease-in-out infinite; } @keyframes cuebob { 0%,100% { transform: translateX(-50%) translateY(0);} 50% { transform: translateX(-50%) translateY(6px);} } }
+  @media (prefers-reduced-motion: no-preference) { .scrollcue { animation: cuebob 1.7s ease-in-out infinite; } @keyframes cuebob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(6px);} } }
 </style>
 <!--__SPLIT__-->
 <div class="wrap">
   <header>
     <p class="eyebrow">Backtest histórico · ilustración hipotética</p>
-    <h1 class="headline">¿Puede un IUL triplicar mi inversión de $72,000 a $214,000?</h1>
-    <p class="subtitle">Sí… pero solo si mueres. En ese caso extremo —fallecimiento o enfermedad terminal, según la póliza— cobrarías los $214,000 completos. Si vives para contarlo, la historia es muy distinta.</p>
+    <h1 class="headline">IUL vs. inversión directa en un ETF del S&amp;P 500</h1>
+    <p class="subtitle">Una póliza de seguro de vida con cuenta de ahorro y un ETF del S&amp;P 500 hacen cosas distintas. Esta página compara qué habría pasado con la misma aportación mensual en cada uno, y qué recibirías con una cobertura de $214,000 en el caso del seguro.</p>
     <p class="answer" id="answer"></p>
   </header>
 
-  <p class="pullquote">El IUL te vende la ilusión de rendimiento; el ETF te da el mercado real.</p>
+  <p class="pullquote">El IUL combina seguro y ahorro; el ETF solo invierte. Aquí medimos cuánto rinde cada uno con el mismo dinero.</p>
 
   <div class="scrollcue" id="scrollcue" aria-hidden="true">Desliza hacia abajo<span class="chev"></span></div>
 
@@ -204,10 +210,10 @@
     <div class="def iul">
       <span class="tag">Seguro de vida universal indexado</span>
       <h3>Un seguro con una cuenta de ahorro ligada al mercado</h3>
-      <p class="lead">El IUL primero cobra sus comisiones, frena tus ganancias cuando la bolsa sube, se queda con los dividendos y te penaliza si quieres recuperar tu dinero antes de tiempo.</p>
+      <p class="lead">El IUL descuenta primero los costes del seguro y de la póliza, limita el crédito cuando el índice sube, no incluye los dividendos y aplica cargos si rescatas antes de tiempo. A cambio, ofrece cobertura de vida y un piso del 0% en el crédito.</p>
       <p>El seguro de vida universal indexado (IUL) es un seguro de vida permanente con una cuenta de valor en efectivo. Cada prima paga primero el coste del seguro y los cargos de la póliza; lo que queda se acredita con un interés ligado a un índice bursátil como el S&amp;P 500.</p>
       <p>El crédito tiene tope y piso. Un tope —a menudo entre el 8% y el 10%— limita las ganancias en los años buenos, un piso del 0% evita que una caída del índice recorte el crédito, y los dividendos quedan excluidos. Por encima del valor de la cuenta, la póliza paga un beneficio por fallecimiento mientras siga financiada.</p>
-      <p>Es un producto muy poco líquido, pensado para un plazo largo y fijo —de 10 a 20 años, o de por vida—. Si quieres rescatar o retirar tu cuenta antes de terminar todo el plazo del contrato, te penalizan con cargos altos sobre el valor de tu cuenta.</p>
+      <p>Es un producto muy poco líquido, pensado para un plazo largo y fijo —de 10 a 20 años, o de por vida—. Si rescatas o retiras tu cuenta antes de terminar el plazo del contrato, se aplican cargos sobre el valor de tu cuenta.</p>
     </div>
     <div class="def etf">
       <span class="tag">Inversión directa en un índice</span>
@@ -223,11 +229,11 @@
   <div class="tiles">
     <div class="tile"><span class="label">Total aportado</span><span class="kind">tu dinero</span><span class="value mono" id="v-contrib">—</span><span class="sub" id="s-contrib"></span></div>
     <div class="tile" data-series="etf"><span class="label">Valor final del ETF</span><span class="kind">Backtest histórico del ETF</span><span class="value mono etf" id="v-etf">—</span><span class="sub" id="s-etf"></span></div>
-    <div class="tile" data-series="iula"><span class="label">IUL: lo que te prometen</span><span class="kind">Tasa fija publicitada · hipotética</span><span class="value mono iula" id="v-iula">—</span><span class="sub" id="s-iula"></span></div>
-    <div class="tile" data-series="iulb"><span class="label">IUL: lo que daría de verdad</span><span class="kind">Misma póliza, créditos reales del índice</span><span class="value mono iulb" id="v-iulb">—</span><span class="sub" id="s-iulb"></span></div>
+    <div class="tile" data-series="iula"><span class="label">IUL: según la ilustración</span><span class="kind">Tasa fija publicitada · hipotética</span><span class="value mono iula" id="v-iula">—</span><span class="sub" id="s-iula"></span></div>
+    <div class="tile" data-series="iulb"><span class="label">IUL: modelo con índice real</span><span class="kind">Misma póliza, créditos reales del índice</span><span class="value mono iulb" id="v-iulb">—</span><span class="sub" id="s-iulb"></span></div>
   </div>
 
-  <p class="look-note">Fíjate en la brecha entre la línea del ETF y las del IUL: esa distancia es lo que el freno del seguro le cuesta a tu dinero.</p>
+  <p class="look-note">La brecha entre el ETF y el IUL refleja los costes del seguro, los topes y la exclusión de dividendos, pero también incluye lo que el IUL ofrece a cambio: cobertura de vida y piso del 0%.</p>
 
   <section>
     <h2 class="sec-title">Compruébalo tú mismo — cómo crecen tus aportaciones con el tiempo</h2>
@@ -246,7 +252,7 @@
             <p class="hint" id="win-hint"></p></div>
         </div>
         <div class="group">
-          <h4>IUL: lo que te prometen (fijo)</h4>
+          <h4>IUL: según la ilustración (fijo)</h4>
           <div class="field"><label>Tasa acreditada (anual efectiva)</label><div class="readout">8% anual · fijo</div><p class="hint">Hipotética; origen no verificado. No editable.</p></div>
           <div class="field"><label>Cargo mensual equivalente (USD)</label><div class="readout">$49.26 / mes · fijo</div><p class="hint">Aproximación ajustada, no cargos verificados de la póliza.</p></div>
           <div class="field"><label>Aportación neta al valor en efectivo / mes</label><div class="readout" id="net-readout">—</div><p class="hint">Lo que de verdad entra a tu cuenta cada mes, después de aplicar el coste del seguro y los demás cargos.</p></div>
@@ -290,8 +296,8 @@
   </section>
 
   <section>
-    <h2 class="sec-title">Cómo se sintió la montaña rusa del ETF</h2>
-    <p class="sec-note">La caída desde máximos mide cuánto estuvo el ETF por debajo de su máximo previo. Una línea suave del IUL no prueba que la póliza carezca de riesgo.</p>
+    <h2 class="sec-title">Las caídas del ETF</h2>
+    <p class="sec-note">La caída desde máximos mide cuánto estuvo el ETF por debajo de su máximo previo. La línea suave del IUL no significa que la póliza carezca de riesgo: el crédito puede ser bajo y los cargos continúan.</p>
     <div class="chart-card">
       <div class="chart-head"><span class="k">Caída desde el máximo previo</span><span class="k" id="dd-sum"></span></div>
       <div id="chart-dd"></div>
@@ -300,7 +306,7 @@
 
   <section>
     <h2 class="sec-title">En qué se diferencian de verdad</h2>
-    <p class="sec-note conclusion">No se trata de decir que uno sea «bueno» y el otro «malo», sino de entender la regla básica de las inversiones: nunca pongas todos tus huevos en la misma canasta. La diversificación es tu mejor escudo contra el riesgo de mercado. Ahora bien, si vas a asumir el riesgo de la bolsa a través del S&amp;P 500, ¿por qué hacerlo a través de un IUL que le pone un freno a tus ganancias? Entre ambos productos, <b>la vía directa al índice siempre será la decisión más inteligente</b>.</p>
+    <p class="sec-note conclusion">Ninguno es «bueno» o «malo»: resuelven problemas distintos. Si tu objetivo es solo acumular capital, en este backtest el ETF acumuló más, con menos costes y más liquidez, aunque con caídas de mercado que el IUL no tiene. Si además necesitas cobertura de vida permanente y valoras el crédito con piso, el IUL cubre esa necesidad, pero conviene tener presente el coste, los topes y los cargos de rescate. Una alternativa habitual es un seguro temporal más un ETF con la diferencia; consulta con un asesor independiente antes de decidir.</p>
     <div class="cmp-wrap">
       <table class="cmp">
         <thead>
@@ -310,7 +316,7 @@
           <tr><td>Motor de crecimiento</td><td>Crédito indexado, con tope y piso; dividendos excluidos</td><td>Rentabilidad total del mercado, con dividendos, sin tope</td></tr>
           <tr><td>Años a la baja</td><td>El piso del 0% protege el interés acreditado — pero los cargos siguen aplicándose</td><td>Asumes toda la pérdida del mercado; sin piso</td></tr>
           <tr><td>Costes</td><td>Coste del seguro más cargos de la póliza, que suben con la edad</td><td>Ratio de gastos del fondo, muy bajo (~0.03–0.09%), y costes de operación</td></tr>
-          <tr><td>Acceso al efectivo</td><td>Penalización alta por retiros o cancelación anticipada</td><td>Líquido: vender cualquier día de mercado</td></tr>
+          <tr><td>Acceso al efectivo</td><td>Cargos de rescate por retiros o cancelación anticipada, según el contrato</td><td>Líquido: vender cualquier día de mercado</td></tr>
           <tr><td>Seguro de vida</td><td>Beneficio por fallecimiento mientras esté financiado (aquí $214,000)</td><td>Ninguno</td></tr>
           <tr><td>Impuestos</td><td>Crecimiento con impuestos diferidos; el beneficio por fallecimiento suele estar exento; los préstamos pueden ser libres de impuestos</td><td>Los dividendos y las ganancias realizadas tributan</td></tr>
           <tr><td>Más adecuado para</td><td>Una necesidad duradera de seguro más ahorro con ventaja fiscal, aceptando topes y comisiones</td><td>Crecimiento a largo plazo cuando el coste, la liquidez y la simplicidad son lo más importante</td></tr>
@@ -350,6 +356,7 @@ const $ = (id) => document.getElementById(id);
 const cvar = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const svgNS = "http://www.w3.org/2000/svg";
 
+const FITTED_CHARGE = fittedMonthlyCharge(); // exact fit to the reported $142,672; never the rounded display value
 const DEFAULT_INPUTS = { budget: 300, ticker: "SPY", rate: 8, charge: 49.26, cap: 8, floor: 0, participation: 100, spread: 0 };
 const SURRENDER_PCT = 0.45; // valor de rescate SUPUESTO: 45% del valor de la cuenta
 const VB = { w: 820, h: 320, l: 54, r: 96, t: 16, b: 30 };
@@ -366,7 +373,10 @@ function monthEnds(ticker) { return PRICES[ticker.toLowerCase()].monthly.map((r)
 
 function populateWindow(ticker, keep) {
   const dates = monthEnds(ticker);
-  const opts = dates.map((d) => `<option value="${d}">${monShort(d)}</option>`).join("");
+  const byYear = {};
+  dates.forEach((d) => { (byYear[d.slice(0, 4)] ||= []).push(d); });
+  const opts = Object.entries(byYear).map(([y, ds]) =>
+    `<optgroup label="${y}">${ds.map((d) => `<option value="${d}">${monShort(d)}</option>`).join("")}</optgroup>`).join("");
   $("win-start").innerHTML = opts; $("win-end").innerHTML = opts;
   const endIdx = dates.length - 1, startIdx = Math.max(0, endIdx - 239);
   $("win-start").value = keep && dates.includes(keep.start) ? keep.start : dates[startIdx];
@@ -377,7 +387,7 @@ function readInputs() {
   return {
     budget: parseFloat($("budget").value), ticker: $("ticker").value,
     start: $("win-start").value, end: $("win-end").value,
-    rate: DEFAULT_INPUTS.rate, charge: DEFAULT_INPUTS.charge, // IUL-A fijo, no editable
+    rate: DEFAULT_INPUTS.rate, charge: FITTED_CHARGE, // IUL-A fijo, no editable
     cap: parseFloat($("cap").value), floor: parseFloat($("floor").value),
     participation: parseFloat($("participation").value), spread: parseFloat($("spread").value),
   };
@@ -560,7 +570,7 @@ function render() {
   $("s-iulb").textContent = `${capped} años en el tope · ${floored} en el piso`;
 
   $("answer").innerHTML =
-    `Si hubieras invertido <b>${usd0(inp.budget)}</b> cada mes en <b>${inp.ticker}</b> desde el <b>${longDate(w.firstDate)}</b> hasta el <b>${longDate(w.lastDate)}</b>, tus <b>${usd0(s.contributed)}</b> valdrían aproximadamente <b>${usd0(s.etf.finalValue)}</b> al ${longDate(valuationDate)}, con dividendos reinvertidos, mientras que la ilustración publicitada del IUL muestra <b>${usd0(s.iulA.finalValue)}</b>.`;
+    `Si hubieras invertido <b>${usd0(inp.budget)}</b> cada mes en <b>${inp.ticker}</b> desde el <b>${longDate(w.firstDate)}</b> hasta el <b>${longDate(w.lastDate)}</b>, tus <b>${usd0(s.contributed)}</b> valdrían aproximadamente <b>${usd0(s.etf.finalValue)}</b> al ${longDate(valuationDate)}, con dividendos reinvertidos, mientras que la ilustración del IUL muestra <b>${usd0(s.iulA.finalValue)}</b>.`;
 
   $("ticker-hint").textContent = inp.ticker === "SPY" ? "SPY hace de sustituto del índice; VOO se lanzó después." : "Solo historial de VOO — sin relleno anterior a 2010.";
   $("win-hint").textContent = `Comprando al cierre de cada fin de mes. Último cierre verificado: ${longDate(valuationDate)}.`;
@@ -583,7 +593,7 @@ function render() {
     { label: "Valor de la cuenta\ndel IUL", value: s.iulA.finalValue, color: cvar("--iula") },
     { label: "Rescate del IUL\n(supuesto, 45%)", value: surrenderValue, color: cvar("--warn") },
   ]);
-  $("exit-note").innerHTML = `<b>Supuesto:</b> el valor de rescate mostrado es una suposición — <b>el 45% del valor de la cuenta</b>, es decir, un cargo de rescate del 55%. El calendario real está totalmente especificado en tu contrato y, sobre todo en los primeros años, puede quedarse con más de la mitad de tu dinero. Rescatar también termina la cobertura de ${usd0(cfg.deathBenefit || 214000)}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.`;
+  $("exit-note").innerHTML = `<b>Supuesto:</b> el valor de rescate mostrado es una suposición — <b>el 45% del valor de la cuenta</b>, es decir, un cargo de rescate del 55%. El calendario real figura en tu contrato; en los primeros años los cargos pueden superar la mitad del valor de la cuenta, y se reducen con el tiempo. Rescatar también termina la cobertura de ${usd0(cfg.deathBenefit || 214000)}. Las cifras del ETF son antes de impuestos personales, comisiones y diferenciales.`;
 
   $("disclosure").textContent ="Backtest histórico del ETF e ilustraciones modeladas del IUL (tasa fija publicitada y reconstrucción vinculada al índice). Ninguna garantiza resultados futuros.";
   const prov = PRICES.meta;
@@ -612,7 +622,7 @@ wire();
   document.querySelectorAll(".wrap > section, .def-grid, .tiles").forEach((el) => el.classList.add("reveal"));
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+  }, { threshold: 0.02, rootMargin: "0px 0px 10% 0px" });
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 })();
 
