@@ -1,4 +1,5 @@
 <title>IUL vs. inversión directa en un ETF del S&amp;P 500</title>
+<meta name="author" content="Gianni Chepote" />
 <meta name="description" content="Backtest con datos reales: $300 al mes en un ETF del S&amp;P 500 frente a un seguro de vida universal indexado (IUL), con la regla de tope y piso aplicada al índice real." />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="IUL vs. inversión directa en un ETF del S&amp;P 500" />
@@ -123,6 +124,10 @@
   .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
   .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
+  .byline { margin: 12px 0 0; font-size: 13.5px; color: var(--muted); }
+  .byline b { color: var(--ink); font-weight: 600; }
+  .byline a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+  .byline a:hover { color: var(--ink); }
   .footnote { margin-top: 40px; font-size: 12px; color: var(--faint); max-width: 72ch; }
   .disclosure { margin-top: 14px; padding: 14px 16px; border-left: 3px solid var(--iula); background: var(--surface); border-radius: 0 8px 8px 0; font-size: 12.5px; color: var(--muted); }
   .exit-note { font-size: 12.5px; color: var(--muted); margin-top: 10px; }
@@ -198,6 +203,7 @@
   <header>
     <p class="eyebrow">Backtest histórico · ilustración hipotética</p>
     <h1 class="headline">IUL vs. inversión directa en un ETF del S&amp;P 500</h1>
+    <p class="byline">Por <b>Gianni Chepote</b> · <a href="https://github.com/gianni-chepote">GitHub</a> · <a href="https://github.com/gianni-chepote/iul-vs-direct-investing">Código fuente</a></p>
     <p class="subtitle">Una póliza de seguro de vida con cuenta de ahorro y un ETF del S&amp;P 500 hacen cosas distintas. Esta página compara qué habría pasado con la misma aportación mensual en cada uno, y qué recibirías con una cobertura de $214,000 en el caso del seguro.</p>
     <p class="answer" id="answer"></p>
   </header>

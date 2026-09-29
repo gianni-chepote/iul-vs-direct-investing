@@ -2,7 +2,7 @@
 
 [![Verify and deploy](https://github.com/gianni-chepote/iul-vs-direct-investing/actions/workflows/pages.yml/badge.svg)](https://github.com/gianni-chepote/iul-vs-direct-investing/actions/workflows/pages.yml)
 
-**Live site:** https://gianni-chepote.github.io/iul-vs-direct-investing/ (in Spanish)
+By **Gianni Chepote** · **Live site:** https://gianni-chepote.github.io/iul-vs-direct-investing/ (in Spanish)
 
 An interactive, data-driven comparison built to answer a real sales pitch: an
 Indexed Universal Life (IUL) policy illustrated as turning $300 a month for 20
